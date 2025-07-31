@@ -1,7 +1,10 @@
 package com.Clientin.Clientin.controller;
 
+import com.Clientin.Clientin.annotation.Loggable;
 import com.Clientin.Clientin.dto.ClientDTO;
+import com.Clientin.Clientin.entity.Log;
 import com.Clientin.Clientin.service.ClientService;
+import com.Clientin.Clientin.service.LogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -20,23 +23,35 @@ import java.util.List;
 public class ClientController {
 
     private final ClientService clientService;
+    private final LogService logService;
 
     @GetMapping
+    @Loggable(action = Log.LogAction.READ, entity = "Client", message = "Fetching all clients")
     public Page<ClientDTO> getAll(Pageable pageable) {
         log.info("Fetching Client with pageable: {}", pageable);
         return clientService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
+    @Loggable(action = Log.LogAction.READ, entity = "Client", message = "Fetching client by ID", logParams = true)
     public ResponseEntity<ClientDTO> getById(@PathVariable String id) {
+        logService.logRead("Client", id, "system", "Attempting to fetch client by ID");
         return clientService.findById(id)
-                .map(dto -> ResponseEntity.ok(dto))
+                .map(dto -> {
+                    logService.logRead("Client", id, "system", "Successfully fetched client");
+                    return ResponseEntity.ok(dto);
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
+    @Loggable(action = Log.LogAction.CREATE, entity = "Client", message = "Creating new client", logParams = true, logReturn = true)
     public ResponseEntity<ClientDTO> create(@Valid @RequestBody ClientDTO dto) {
+        logService.logAction(Log.LogLevel.INFO, Log.LogAction.CREATE, "Client", null, "system", 
+                           "Attempting to create new client: " + dto.getName());
         ClientDTO created = clientService.create(dto);
+        logService.logCreate("Client", created.getId(), "system", 
+                           "Client created successfully with name: " + created.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
