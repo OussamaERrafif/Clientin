@@ -29,7 +29,7 @@ public class ResourceNotFoundException extends BaseException {
         this.resourceId = resourceId;
     }
 
-    public ResourceNotFoundException(String entity, String field, String value) {
+    public ResourceNotFoundException(String entity, String field, String value, boolean byField) {
         super(String.format("%s with %s '%s' not found", entity, field, value), 
               ERROR_CODE, 
               HttpStatus.NOT_FOUND);

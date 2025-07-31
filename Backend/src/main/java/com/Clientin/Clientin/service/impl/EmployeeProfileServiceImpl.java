@@ -1,10 +1,12 @@
 package com.Clientin.Clientin.service.impl;
 
 import com.Clientin.Clientin.entity.EmployeeProfile;
+import com.Clientin.Clientin.entity.Log;
 import com.Clientin.Clientin.dto.EmployeeProfileDTO;
 import com.Clientin.Clientin.mapper.EmployeeProfileMapper;
 import com.Clientin.Clientin.repository.EmployeeProfileRepository;
 import com.Clientin.Clientin.service.EmployeeProfileService;
+import com.Clientin.Clientin.service.LogService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileService {
 
     private final EmployeeProfileRepository employeeProfileRepository;
     private final EmployeeProfileMapper employeeProfileMapper;
+    private final LogService logService;
 
     @Override
     @Transactional

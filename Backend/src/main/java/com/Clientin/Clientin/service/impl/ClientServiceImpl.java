@@ -1,10 +1,12 @@
 package com.Clientin.Clientin.service.impl;
 
 import com.Clientin.Clientin.entity.Client;
+import com.Clientin.Clientin.entity.Log;
 import com.Clientin.Clientin.dto.ClientDTO;
 import com.Clientin.Clientin.mapper.ClientMapper;
 import com.Clientin.Clientin.repository.ClientRepository;
 import com.Clientin.Clientin.service.ClientService;
+import com.Clientin.Clientin.service.LogService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,15 +26,20 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
+    private final LogService logService;
 
     @Override
     @Transactional
     public ClientDTO create(ClientDTO dto) {
         log.debug("Creating new Client");
         try {
+            logService.logAction(Log.LogLevel.INFO, Log.LogAction.CREATE, "Client", null, "system", "Starting client creation transaction");
             Client entity = clientMapper.toEntity(dto);
-            return clientMapper.toDTO(clientRepository.save(entity));
+            Client saved = clientRepository.save(entity);
+            logService.logCreate("Client", saved.getId(), "system", "Client entity created and saved to database");
+            return clientMapper.toDTO(saved);
         } catch (Exception e) {
+            logService.logError("Client", null, "system", "Failed to create client", e.getMessage());
             throw new RuntimeException("Error creating entity", e);
         }
     }

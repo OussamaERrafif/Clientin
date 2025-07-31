@@ -56,42 +56,56 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
+    @Loggable(action = Log.LogAction.UPDATE, entity = "Client", message = "Updating client", logParams = true)
     public ResponseEntity<ClientDTO> update(
             @PathVariable String id,
             @Valid @RequestBody ClientDTO dto) {
         try {
+            logService.logAction(Log.LogLevel.INFO, Log.LogAction.UPDATE, "Client", id, "system", "Attempting to update client");
             ClientDTO updated = clientService.update(id, dto);
+            logService.logUpdate("Client", id, "system", "Client updated successfully");
             return ResponseEntity.ok(updated);
         } catch (Exception e) {
+            logService.logError("Client", id, "system", "Failed to update client", e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
 
     @PatchMapping("/{id}")
+    @Loggable(action = Log.LogAction.UPDATE, entity = "Client", message = "Partially updating client", logParams = true)
     public ResponseEntity<ClientDTO> partialUpdate(
             @PathVariable String id,
             @Valid @RequestBody ClientDTO dto) {
         try {
+            logService.logAction(Log.LogLevel.INFO, Log.LogAction.UPDATE, "Client", id, "system", "Attempting partial update of client");
             ClientDTO updated = clientService.partialUpdate(id, dto);
+            logService.logUpdate("Client", id, "system", "Client partially updated successfully");
             return ResponseEntity.ok(updated);
         } catch (Exception e) {
+            logService.logError("Client", id, "system", "Failed to partially update client", e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
+    @Loggable(action = Log.LogAction.DELETE, entity = "Client", message = "Deleting client", logParams = true)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         try {
+            logService.logAction(Log.LogLevel.INFO, Log.LogAction.DELETE, "Client", id, "system", "Attempting to delete client");
             clientService.delete(id);
+            logService.logDelete("Client", id, "system", "Client deleted successfully");
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
+            logService.logError("Client", id, "system", "Failed to delete client", e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/exists/{id}")
+    @Loggable(action = Log.LogAction.READ, entity = "Client", message = "Checking client existence", logParams = true, logReturn = true)
     public ResponseEntity<Boolean> exists(@PathVariable String id) {
         boolean exists = clientService.exists(id);
+        logService.logRead("Client", id, "system", "Checked client existence: " + exists);
         return ResponseEntity.ok(exists);
     }
 }
