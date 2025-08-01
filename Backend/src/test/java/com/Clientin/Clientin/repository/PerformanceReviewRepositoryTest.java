@@ -1,0 +1,402 @@
+package com.Clientin.Clientin.repository;
+
+    import com.Clientin.Clientin.entity.PerformanceReview;
+    import org.junit.jupiter.api.*;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+    import org.springframework.dao.DataIntegrityViolationException;
+    import org.springframework.data.domain.*;
+    import org.springframework.test.context.jdbc.Sql;
+    import javax.persistence.EntityManager;
+    import java.util.List;
+    import java.util.Optional;
+
+    import static org.assertj.core.api.Assertions.*;
+
+    @DataJpaTest
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    class PerformanceReviewRepositoryTest {
+
+        @Autowired
+        private PerformanceReviewRepository repository;
+        
+        @Autowired
+        private EntityManager em;
+
+        private PerformanceReview testEntity;
+
+        @BeforeAll
+        void setupRelationships() {
+            // Pre-create required relationship entities
+            User employee = new User();
+        em.persist(employee);
+        User reviewer = new User();
+        em.persist(reviewer);
+        }
+
+        @BeforeEach
+        void setUp() {
+            testEntity = new PerformanceReview();
+            testEntity.setEmployeeId("TEST_EMPLOYEEID");\n        testEntity.setReviewerId("TEST_REVIEWERID");\n        testEntity.setReviewPeriodStart(LocalDate.of(2024, 1, 1));\n        testEntity.setReviewPeriodEnd(LocalDate.of(2024, 1, 1));\n        testEntity.setOverallScore(new BigDecimal("1234.56"));\n        testEntity.setTechnicalSkillsScore(new BigDecimal("1234.56"));\n        testEntity.setCommunicationScore(new BigDecimal("1234.56"));\n        testEntity.setTeamworkScore(new BigDecimal("1234.56"));\n        testEntity.setLeadershipScore(new BigDecimal("1234.56"));\n        testEntity.setStrengths("TEST_STRENGTHS");\n        testEntity.setAreasForImprovement("TEST_AREASFORIMPROVEMENT");\n        testEntity.setGoals("TEST_GOALS");\n        testEntity.setReviewerComments("TEST_REVIEWERCOMMENTS");\n        testEntity.setEmployeeComments("TEST_EMPLOYEECOMMENTS");\n        // TODO: Handle ReviewStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setCompletedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User employee = UserTestUtils.createTestUser();
+        em.persist(employee);
+        testEntity.setEmployee(employee);\n        User reviewer = UserTestUtils.createTestUser();
+        em.persist(reviewer);
+        testEntity.setReviewer(reviewer);
+            repository.saveAndFlush(testEntity);
+            em.clear();
+        }
+
+        @AfterEach
+        void tearDown() {
+            UserTestUtils.cleanupUser(em);\n        UserTestUtils.cleanupUser(em);
+        }
+
+        @Test
+        @Transactional
+        void shouldPersistAndRetrieveEntity() {
+            List<PerformanceReview> all = repository.findAll();
+            assertThat(all)
+                .hasSize(1)
+                .first()
+                .usingRecursiveComparison()
+                .ignoringFields("id", "version")
+                .isEqualTo(testEntity);
+        }
+
+        @Test
+        void shouldFindByAllFields() {
+    
+            // Test employeeId field
+            List<PerformanceReview> byEmployeeid = repository.findByEmployeeid(testEntity.getEmployeeid());
+            assertThat(byEmployeeid)
+                .hasSize(1)
+                .extracting("employeeId")
+                .containsExactly(testEntity.getEmployeeid());
+
+            // Test reviewerId field
+            List<PerformanceReview> byReviewerid = repository.findByReviewerid(testEntity.getReviewerid());
+            assertThat(byReviewerid)
+                .hasSize(1)
+                .extracting("reviewerId")
+                .containsExactly(testEntity.getReviewerid());
+
+            // Test reviewPeriodStart field
+            List<PerformanceReview> byReviewperiodstart = repository.findByReviewperiodstart(testEntity.getReviewperiodstart());
+            assertThat(byReviewperiodstart)
+                .hasSize(1)
+                .extracting("reviewPeriodStart")
+                .containsExactly(testEntity.getReviewperiodstart());
+
+            // Test reviewPeriodEnd field
+            List<PerformanceReview> byReviewperiodend = repository.findByReviewperiodend(testEntity.getReviewperiodend());
+            assertThat(byReviewperiodend)
+                .hasSize(1)
+                .extracting("reviewPeriodEnd")
+                .containsExactly(testEntity.getReviewperiodend());
+
+            // Test overallScore field
+            List<PerformanceReview> byOverallscore = repository.findByOverallscore(testEntity.getOverallscore());
+            assertThat(byOverallscore)
+                .hasSize(1)
+                .extracting("overallScore")
+                .containsExactly(testEntity.getOverallscore());
+
+            // Test technicalSkillsScore field
+            List<PerformanceReview> byTechnicalskillsscore = repository.findByTechnicalskillsscore(testEntity.getTechnicalskillsscore());
+            assertThat(byTechnicalskillsscore)
+                .hasSize(1)
+                .extracting("technicalSkillsScore")
+                .containsExactly(testEntity.getTechnicalskillsscore());
+
+            // Test communicationScore field
+            List<PerformanceReview> byCommunicationscore = repository.findByCommunicationscore(testEntity.getCommunicationscore());
+            assertThat(byCommunicationscore)
+                .hasSize(1)
+                .extracting("communicationScore")
+                .containsExactly(testEntity.getCommunicationscore());
+
+            // Test teamworkScore field
+            List<PerformanceReview> byTeamworkscore = repository.findByTeamworkscore(testEntity.getTeamworkscore());
+            assertThat(byTeamworkscore)
+                .hasSize(1)
+                .extracting("teamworkScore")
+                .containsExactly(testEntity.getTeamworkscore());
+
+            // Test leadershipScore field
+            List<PerformanceReview> byLeadershipscore = repository.findByLeadershipscore(testEntity.getLeadershipscore());
+            assertThat(byLeadershipscore)
+                .hasSize(1)
+                .extracting("leadershipScore")
+                .containsExactly(testEntity.getLeadershipscore());
+
+            // Test strengths field
+            List<PerformanceReview> byStrengths = repository.findByStrengths(testEntity.getStrengths());
+            assertThat(byStrengths)
+                .hasSize(1)
+                .extracting("strengths")
+                .containsExactly(testEntity.getStrengths());
+
+            // Test areasForImprovement field
+            List<PerformanceReview> byAreasforimprovement = repository.findByAreasforimprovement(testEntity.getAreasforimprovement());
+            assertThat(byAreasforimprovement)
+                .hasSize(1)
+                .extracting("areasForImprovement")
+                .containsExactly(testEntity.getAreasforimprovement());
+
+            // Test goals field
+            List<PerformanceReview> byGoals = repository.findByGoals(testEntity.getGoals());
+            assertThat(byGoals)
+                .hasSize(1)
+                .extracting("goals")
+                .containsExactly(testEntity.getGoals());
+
+            // Test reviewerComments field
+            List<PerformanceReview> byReviewercomments = repository.findByReviewercomments(testEntity.getReviewercomments());
+            assertThat(byReviewercomments)
+                .hasSize(1)
+                .extracting("reviewerComments")
+                .containsExactly(testEntity.getReviewercomments());
+
+            // Test employeeComments field
+            List<PerformanceReview> byEmployeecomments = repository.findByEmployeecomments(testEntity.getEmployeecomments());
+            assertThat(byEmployeecomments)
+                .hasSize(1)
+                .extracting("employeeComments")
+                .containsExactly(testEntity.getEmployeecomments());
+
+            // Test status field
+            List<PerformanceReview> byStatus = repository.findByStatus(testEntity.getStatus());
+            assertThat(byStatus)
+                .hasSize(1)
+                .extracting("status")
+                .containsExactly(testEntity.getStatus());
+
+            // Test completedAt field
+            List<PerformanceReview> byCompletedat = repository.findByCompletedat(testEntity.getCompletedat());
+            assertThat(byCompletedat)
+                .hasSize(1)
+                .extracting("completedAt")
+                .containsExactly(testEntity.getCompletedat());
+
+            // Test createdAt field
+            List<PerformanceReview> byCreatedat = repository.findByCreatedat(testEntity.getCreatedat());
+            assertThat(byCreatedat)
+                .hasSize(1)
+                .extracting("createdAt")
+                .containsExactly(testEntity.getCreatedat());
+
+            // Test updatedAt field
+            List<PerformanceReview> byUpdatedat = repository.findByUpdatedat(testEntity.getUpdatedat());
+            assertThat(byUpdatedat)
+                .hasSize(1)
+                .extracting("updatedAt")
+                .containsExactly(testEntity.getUpdatedat());
+
+            // Test employee field
+            List<PerformanceReview> byEmployee = repository.findByEmployee(testEntity.getEmployee());
+            assertThat(byEmployee)
+                .hasSize(1)
+                .extracting("employee")
+                .containsExactly(testEntity.getEmployee());
+
+            // Test reviewer field
+            List<PerformanceReview> byReviewer = repository.findByReviewer(testEntity.getReviewer());
+            assertThat(byReviewer)
+                .hasSize(1)
+                .extracting("reviewer")
+                .containsExactly(testEntity.getReviewer());
+        }
+
+        @Test
+        void shouldReturnEmptyForInvalidId() {
+            Optional<PerformanceReview> found = repository.findById("INVALID_ID");
+            assertThat(found).isEmpty();
+        }
+
+        @Test
+        void shouldEnforceBusinessConstraints() {
+            // Test null constraints
+            
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setId(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setEmployeeid(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setReviewerid(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setReviewperiodstart(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setReviewperiodend(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setOverallscore(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setTechnicalskillsscore(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setCommunicationscore(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setTeamworkscore(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setLeadershipscore(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setStrengths(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setAreasforimprovement(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setGoals(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setReviewercomments(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setEmployeecomments(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setStatus(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setCompletedat(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setCreatedat(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setUpdatedat(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setEmployee(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            PerformanceReview invalidEntity = createTestEntity();
+            invalidEntity.setReviewer(null);
+            assertThatThrownBy(() -> repository.save(invalidEntity))
+                .isInstanceOf(DataIntegrityViolationException.class)
+                .hasMessageContaining("not-null");
+
+            // Test unique constraints
+            
+        }
+
+        @Test
+        void shouldSupportPaginationAndSorting() {
+            repository.save(createTestEntity());
+            
+            Page<PerformanceReview> page = repository.findAll(
+                PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "id"))
+            );
+            
+            assertThat(page.getContent())
+                .hasSize(1)
+                .extracting("id")
+                .containsExactly(repository.count());
+        }
+
+        @Test
+        @Sql(scripts = "/data/insert_test_performanceReviews.sql")
+        void shouldExecuteCustomQueries() {
+            // Add custom query tests here
+            List<Entity> results = repository.findByCustomCriteria();
+            assertThat(results).isNotEmpty();
+        }
+
+        
+        @Test
+        @WithMockUser(authorities = "SCOPE_PERFORMANCEREVIEW_READ")
+        void getUser_ShouldReturnRelatedResources() throws Exception {
+            List<UserDTO> items = List.of(new UserDTO());
+            given(performanceReviewService.getEmployee(TEST_ID))
+                .willReturn(items);
+
+            mockMvc.perform(get(BASE_URL + "/{id}/employee", TEST_ID))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.UserList").exists());
+        }
+
+        @Test
+        @WithMockUser(authorities = "SCOPE_PERFORMANCEREVIEW_READ")
+        void getUser_ShouldReturnRelatedResources() throws Exception {
+            List<UserDTO> items = List.of(new UserDTO());
+            given(performanceReviewService.getReviewer(TEST_ID))
+                .willReturn(items);
+
+            mockMvc.perform(get(BASE_URL + "/{id}/reviewer", TEST_ID))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.UserList").exists());
+        }
+
+        private PerformanceReview createTestEntity() {
+            PerformanceReview entity = new PerformanceReview();
+            entity.setEmployeeid(testEntity.getEmployeeid());\n        entity.setReviewerid(testEntity.getReviewerid());\n        entity.setReviewperiodstart(testEntity.getReviewperiodstart());\n        entity.setReviewperiodend(testEntity.getReviewperiodend());\n        entity.setOverallscore(testEntity.getOverallscore());\n        entity.setTechnicalskillsscore(testEntity.getTechnicalskillsscore());\n        entity.setCommunicationscore(testEntity.getCommunicationscore());\n        entity.setTeamworkscore(testEntity.getTeamworkscore());\n        entity.setLeadershipscore(testEntity.getLeadershipscore());\n        entity.setStrengths(testEntity.getStrengths());\n        entity.setAreasforimprovement(testEntity.getAreasforimprovement());\n        entity.setGoals(testEntity.getGoals());\n        entity.setReviewercomments(testEntity.getReviewercomments());\n        entity.setEmployeecomments(testEntity.getEmployeecomments());\n        entity.setStatus(testEntity.getStatus());\n        entity.setCompletedat(testEntity.getCompletedat());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());\n        entity.setEmployee(testEntity.getEmployee());\n        entity.setReviewer(testEntity.getReviewer());
+            return entity;
+        }
+    }

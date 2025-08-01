@@ -34,3 +34,7 @@ build/
 
 ### Personal files ###
 run.sh
+copy_files.py
+fix_imports.py
+fix_repositories.py
+process_entities.py
