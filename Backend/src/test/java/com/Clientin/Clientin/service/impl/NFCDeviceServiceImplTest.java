@@ -36,7 +36,26 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new NFCDevice();
             dto = new NFCDeviceDTO();
-            entity.setDeviceName("Test Devicename");\n        dto.setDeviceName(entity.getDeviceName());\n        entity.setDeviceSerial("Test Deviceserial");\n        dto.setDeviceSerial(entity.getDeviceSerial());\n        entity.setLocation("Test Location");\n        dto.setLocation(entity.getLocation());\n        entity.setStatus(createTestDeviceStatus());\n        dto.setStatus(entity.getStatus());\n        entity.setFirmwareVersion("Test Firmwareversion");\n        dto.setFirmwareVersion(entity.getFirmwareVersion());\n        entity.setBatteryLevel(42);\n        dto.setBatteryLevel(entity.getBatteryLevel());\n        entity.setLastPing(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setLastPing(entity.getLastPing());\n        entity.setConfiguration("Test Configuration");\n        dto.setConfiguration(entity.getConfiguration());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());
+            entity.setDeviceName("Test Devicename");
+        dto.setDeviceName(entity.getDeviceName());
+        entity.setDeviceSerial("Test Deviceserial");
+        dto.setDeviceSerial(entity.getDeviceSerial());
+        entity.setLocation("Test Location");
+        dto.setLocation(entity.getLocation());
+        entity.setStatus(createTestDeviceStatus());
+        dto.setStatus(entity.getStatus());
+        entity.setFirmwareVersion("Test Firmwareversion");
+        dto.setFirmwareVersion(entity.getFirmwareVersion());
+        entity.setBatteryLevel(42);
+        dto.setBatteryLevel(entity.getBatteryLevel());
+        entity.setLastPing(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setLastPing(entity.getLastPing());
+        entity.setConfiguration("Test Configuration");
+        dto.setConfiguration(entity.getConfiguration());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
         }
 
         @Test
@@ -50,7 +69,16 @@ package com.Clientin.Clientin.service.impl;
             NFCDeviceDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getDeviceName()).isEqualTo(dto.getDeviceName());\n        assertThat(result.getDeviceSerial()).isEqualTo(dto.getDeviceSerial());\n        assertThat(result.getLocation()).isEqualTo(dto.getLocation());\n        assertThat(result.getStatus()).isEqualTo(dto.getStatus());\n        assertThat(result.getFirmwareVersion()).isEqualTo(dto.getFirmwareVersion());\n        assertThat(result.getBatteryLevel()).isEqualTo(dto.getBatteryLevel());\n        assertThat(result.getLastPing()).isEqualTo(dto.getLastPing());\n        assertThat(result.getConfiguration()).isEqualTo(dto.getConfiguration());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+            assertThat(result.getDeviceName()).isEqualTo(dto.getDeviceName());
+        assertThat(result.getDeviceSerial()).isEqualTo(dto.getDeviceSerial());
+        assertThat(result.getLocation()).isEqualTo(dto.getLocation());
+        assertThat(result.getStatus()).isEqualTo(dto.getStatus());
+        assertThat(result.getFirmwareVersion()).isEqualTo(dto.getFirmwareVersion());
+        assertThat(result.getBatteryLevel()).isEqualTo(dto.getBatteryLevel());
+        assertThat(result.getLastPing()).isEqualTo(dto.getLastPing());
+        assertThat(result.getConfiguration()).isEqualTo(dto.getConfiguration());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
             then(nFCDeviceRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

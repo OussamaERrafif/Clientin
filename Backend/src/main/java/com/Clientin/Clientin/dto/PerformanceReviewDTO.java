@@ -36,6 +36,8 @@ public class PerformanceReviewDTO implements Serializable {
     private LocalDateTime completedAt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // Relationship handled via employeeId
-    // Relationship handled via reviewerId
+    
+    // Relationships
+    private User employee;
+    private User reviewer;
 }

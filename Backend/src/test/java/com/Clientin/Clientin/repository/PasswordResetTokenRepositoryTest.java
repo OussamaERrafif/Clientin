@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,13 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new PasswordResetToken();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setTokenHash("TEST_TOKENHASH");\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUsed(true);\n        testEntity.setIpAddress("TEST_IPADDRESS");\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setTokenHash("TEST_TOKENHASH");
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUsed(true);
+        testEntity.setIpAddress("TEST_IPADDRESS");
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -196,9 +202,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_PASSWORDRESETTOKEN_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(passwordResetTokenService.getUser(TEST_ID))
@@ -211,7 +215,13 @@ package com.Clientin.Clientin.repository;
 
         private PasswordResetToken createTestEntity() {
             PasswordResetToken entity = new PasswordResetToken();
-            entity.setUserid(testEntity.getUserid());\n        entity.setTokenhash(testEntity.getTokenhash());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setUsed(testEntity.getUsed());\n        entity.setIpaddress(testEntity.getIpaddress());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setTokenhash(testEntity.getTokenhash());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setUsed(testEntity.getUsed());
+        entity.setIpaddress(testEntity.getIpaddress());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }

@@ -23,5 +23,7 @@ public class PasswordResetTokenDTO implements Serializable {
     private LocalDateTime expiresAt;
     private Boolean used;
     private String ipAddress;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

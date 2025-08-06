@@ -10,12 +10,10 @@ package com.Clientin.Clientin.controller;
     import org.springframework.data.domain.*;
     import org.springframework.hateoas.*;
     import org.springframework.http.*;
-    import org.springframework.security.test.context.support.WithMockUser;
-    import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.MockMvc;
     import java.util.*;
     import static org.mockito.BDDMockito.*;
-    import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
     import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
     @WebMvcTest(NFCDeviceController.class)
@@ -33,7 +31,6 @@ package com.Clientin.Clientin.controller;
         private final String BASE_URL = "/api/v1/nFCDevices";
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_READ")
         void getById_ShouldReturnResourceWithLinks() throws Exception {
             given(nFCDeviceService.findById(TEST_ID)).willReturn(Optional.of(validDto));
 
@@ -45,12 +42,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_WRITE")
         void create_ShouldReturnCreatedWithLocation() throws Exception {
             given(nFCDeviceService.create(any())).willReturn(validDto);
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isCreated())
@@ -67,12 +63,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_WRITE")
         void create_ShouldValidateInput() throws Exception {
             NFCDeviceDTO invalidDto = new NFCDeviceDTO();
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(invalidDto)))
                 .andExpect(status().isBadRequest())
@@ -81,7 +76,6 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_READ")
         void getAll_ShouldReturnPagedResources() throws Exception {
             Page<NFCDeviceDTO> page = new PageImpl<>(List.of(validDto));
             given(nFCDeviceService.findAll(any())).willReturn(page);
@@ -96,28 +90,24 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_DELETE")
         void delete_ShouldReturnNoContent() throws Exception {
             given(nFCDeviceService.exists(TEST_ID)).willReturn(true);
 
             mockMvc.perform(delete(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf()))
+                    )
                 .andExpect(status().isNoContent());
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCDEVICE_UPDATE")
         void partialUpdate_ShouldHandleInvalidData() throws Exception {
             given(nFCDeviceService.partialUpdate(eq(TEST_ID), any()))
                 .willThrow(new IllegalArgumentException("Invalid data"));
 
             mockMvc.perform(patch(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf())
+                    
                     .content("{}"))
                 .andExpect(status().isBadRequest());
         }
-
-        
 
         private NFCDeviceDTO createValidDto() {
             return NFCDeviceDTO.builder()

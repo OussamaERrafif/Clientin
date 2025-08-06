@@ -36,7 +36,20 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new PasswordResetToken();
             dto = new PasswordResetTokenDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setTokenHash("Test Tokenhash");\n        dto.setTokenHash(entity.getTokenHash());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setUsed(createTestBoolean());\n        dto.setUsed(entity.getUsed());\n        entity.setIpAddress("Test Ipaddress");\n        dto.setIpAddress(entity.getIpAddress());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setTokenHash("Test Tokenhash");
+        dto.setTokenHash(entity.getTokenHash());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setUsed(createTestBoolean());
+        dto.setUsed(entity.getUsed());
+        entity.setIpAddress("Test Ipaddress");
+        dto.setIpAddress(entity.getIpAddress());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +63,13 @@ package com.Clientin.Clientin.service.impl;
             PasswordResetTokenDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getTokenHash()).isEqualTo(dto.getTokenHash());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getUsed()).isEqualTo(dto.getUsed());\n        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getTokenHash()).isEqualTo(dto.getTokenHash());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getUsed()).isEqualTo(dto.getUsed());
+        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(passwordResetTokenRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

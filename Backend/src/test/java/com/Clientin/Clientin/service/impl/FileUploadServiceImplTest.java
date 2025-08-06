@@ -36,7 +36,36 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new FileUpload();
             dto = new FileUploadDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setOriginalFilename("Test Originalfilename");\n        dto.setOriginalFilename(entity.getOriginalFilename());\n        entity.setStoredFilename("Test Storedfilename");\n        dto.setStoredFilename(entity.getStoredFilename());\n        entity.setFilePath("Test Filepath");\n        dto.setFilePath(entity.getFilePath());\n        entity.setContentType("Test Contenttype");\n        dto.setContentType(entity.getContentType());\n        entity.setFileSize(createTestLong());\n        dto.setFileSize(entity.getFileSize());\n        entity.setFileType(createTestFileType());\n        dto.setFileType(entity.getFileType());\n        entity.setEntityType("Test Entitytype");\n        dto.setEntityType(entity.getEntityType());\n        entity.setEntityId("Test Entityid");\n        dto.setEntityId(entity.getEntityId());\n        entity.setFileHash("Test Filehash");\n        dto.setFileHash(entity.getFileHash());\n        entity.setIsPublic(createTestBoolean());\n        dto.setIsPublic(entity.getIsPublic());\n        entity.setDownloadCount(createTestLong());\n        dto.setDownloadCount(entity.getDownloadCount());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setOriginalFilename("Test Originalfilename");
+        dto.setOriginalFilename(entity.getOriginalFilename());
+        entity.setStoredFilename("Test Storedfilename");
+        dto.setStoredFilename(entity.getStoredFilename());
+        entity.setFilePath("Test Filepath");
+        dto.setFilePath(entity.getFilePath());
+        entity.setContentType("Test Contenttype");
+        dto.setContentType(entity.getContentType());
+        entity.setFileSize(createTestLong());
+        dto.setFileSize(entity.getFileSize());
+        entity.setFileType(createTestFileType());
+        dto.setFileType(entity.getFileType());
+        entity.setEntityType("Test Entitytype");
+        dto.setEntityType(entity.getEntityType());
+        entity.setEntityId("Test Entityid");
+        dto.setEntityId(entity.getEntityId());
+        entity.setFileHash("Test Filehash");
+        dto.setFileHash(entity.getFileHash());
+        entity.setIsPublic(createTestBoolean());
+        dto.setIsPublic(entity.getIsPublic());
+        entity.setDownloadCount(createTestLong());
+        dto.setDownloadCount(entity.getDownloadCount());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +79,21 @@ package com.Clientin.Clientin.service.impl;
             FileUploadDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getOriginalFilename()).isEqualTo(dto.getOriginalFilename());\n        assertThat(result.getStoredFilename()).isEqualTo(dto.getStoredFilename());\n        assertThat(result.getFilePath()).isEqualTo(dto.getFilePath());\n        assertThat(result.getContentType()).isEqualTo(dto.getContentType());\n        assertThat(result.getFileSize()).isEqualTo(dto.getFileSize());\n        assertThat(result.getFileType()).isEqualTo(dto.getFileType());\n        assertThat(result.getEntityType()).isEqualTo(dto.getEntityType());\n        assertThat(result.getEntityId()).isEqualTo(dto.getEntityId());\n        assertThat(result.getFileHash()).isEqualTo(dto.getFileHash());\n        assertThat(result.getIsPublic()).isEqualTo(dto.getIsPublic());\n        assertThat(result.getDownloadCount()).isEqualTo(dto.getDownloadCount());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getOriginalFilename()).isEqualTo(dto.getOriginalFilename());
+        assertThat(result.getStoredFilename()).isEqualTo(dto.getStoredFilename());
+        assertThat(result.getFilePath()).isEqualTo(dto.getFilePath());
+        assertThat(result.getContentType()).isEqualTo(dto.getContentType());
+        assertThat(result.getFileSize()).isEqualTo(dto.getFileSize());
+        assertThat(result.getFileType()).isEqualTo(dto.getFileType());
+        assertThat(result.getEntityType()).isEqualTo(dto.getEntityType());
+        assertThat(result.getEntityId()).isEqualTo(dto.getEntityId());
+        assertThat(result.getFileHash()).isEqualTo(dto.getFileHash());
+        assertThat(result.getIsPublic()).isEqualTo(dto.getIsPublic());
+        assertThat(result.getDownloadCount()).isEqualTo(dto.getDownloadCount());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(fileUploadRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

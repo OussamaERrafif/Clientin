@@ -36,7 +36,26 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new NFCSession();
             dto = new NFCSessionDTO();
-            entity.setDeviceId("Test Deviceid");\n        dto.setDeviceId(entity.getDeviceId());\n        entity.setSessionToken("Test Sessiontoken");\n        dto.setSessionToken(entity.getSessionToken());\n        entity.setClientId("Test Clientid");\n        dto.setClientId(entity.getClientId());\n        entity.setStatus(createTestSessionStatus());\n        dto.setStatus(entity.getStatus());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setCompletedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCompletedAt(entity.getCompletedAt());\n        entity.setMetadata("Test Metadata");\n        dto.setMetadata(entity.getMetadata());\n        entity.setDevice(createTestNFCDevice());\n        dto.setDevice(entity.getDevice());\n        entity.setClient(createTestClient());\n        dto.setClient(entity.getClient());
+            entity.setDeviceId("Test Deviceid");
+        dto.setDeviceId(entity.getDeviceId());
+        entity.setSessionToken("Test Sessiontoken");
+        dto.setSessionToken(entity.getSessionToken());
+        entity.setClientId("Test Clientid");
+        dto.setClientId(entity.getClientId());
+        entity.setStatus(createTestSessionStatus());
+        dto.setStatus(entity.getStatus());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setCompletedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCompletedAt(entity.getCompletedAt());
+        entity.setMetadata("Test Metadata");
+        dto.setMetadata(entity.getMetadata());
+        entity.setDevice(createTestNFCDevice());
+        dto.setDevice(entity.getDevice());
+        entity.setClient(createTestClient());
+        dto.setClient(entity.getClient());
         }
 
         @Test
@@ -50,7 +69,16 @@ package com.Clientin.Clientin.service.impl;
             NFCSessionDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getDeviceId()).isEqualTo(dto.getDeviceId());\n        assertThat(result.getSessionToken()).isEqualTo(dto.getSessionToken());\n        assertThat(result.getClientId()).isEqualTo(dto.getClientId());\n        assertThat(result.getStatus()).isEqualTo(dto.getStatus());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getCompletedAt()).isEqualTo(dto.getCompletedAt());\n        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());\n        assertThat(result.getDevice()).isEqualTo(dto.getDevice());\n        assertThat(result.getClient()).isEqualTo(dto.getClient());
+            assertThat(result.getDeviceId()).isEqualTo(dto.getDeviceId());
+        assertThat(result.getSessionToken()).isEqualTo(dto.getSessionToken());
+        assertThat(result.getClientId()).isEqualTo(dto.getClientId());
+        assertThat(result.getStatus()).isEqualTo(dto.getStatus());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getCompletedAt()).isEqualTo(dto.getCompletedAt());
+        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());
+        assertThat(result.getDevice()).isEqualTo(dto.getDevice());
+        assertThat(result.getClient()).isEqualTo(dto.getClient());
             then(nFCSessionRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

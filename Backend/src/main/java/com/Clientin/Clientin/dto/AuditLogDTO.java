@@ -29,5 +29,7 @@ public class AuditLogDTO implements Serializable {
     private String sessionId;
     private String requestId;
     private LocalDateTime createdAt;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

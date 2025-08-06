@@ -27,5 +27,7 @@ public class AnalyticsDTO implements Serializable {
     private String department;
     private String metadata;
     private LocalDateTime createdAt;
-    // Relationship handled via employeeId
+    
+    // Relationships
+    private User employee;
 }

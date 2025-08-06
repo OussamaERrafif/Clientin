@@ -3,6 +3,7 @@ package com.Clientin.Clientin.repository;
 import com.Clientin.Clientin.entity.Report;
 import com.Clientin.Clientin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface ReportRepository 
-    extends JpaRepository<Report, String> {
+    extends JpaRepository<Report, String>, JpaSpecificationExecutor<Report> {
 
     // Automatic query methods
     List<Report> findByUserId(String userId);

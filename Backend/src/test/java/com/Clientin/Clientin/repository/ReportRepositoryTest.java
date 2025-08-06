@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,23 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new Report();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setReportName("Sample Reportname");\n        // TODO: Handle ReportType type for reportType\n        // testEntity.setReportType(/* unknown type */);\n        // TODO: Handle ReportStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setParameters("TEST_PARAMETERS");\n        testEntity.setFilePath("TEST_FILEPATH");\n        testEntity.setFileSize(42L);\n        // TODO: Handle ReportFormat type for format\n        // testEntity.setFormat(/* unknown type */);\n        testEntity.setScheduledFor(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setGeneratedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setReportName("Sample Reportname");
+        // TODO: Handle ReportType type for reportType
+        // testEntity.setReportType(/* unknown type */);
+        // TODO: Handle ReportStatus type for status
+        // testEntity.setStatus(/* unknown type */);
+        testEntity.setParameters("TEST_PARAMETERS");
+        testEntity.setFilePath("TEST_FILEPATH");
+        testEntity.setFileSize(42L);
+        // TODO: Handle ReportFormat type for format
+        // testEntity.setFormat(/* unknown type */);
+        testEntity.setScheduledFor(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setGeneratedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -287,9 +303,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(reportService.getUser(TEST_ID))
@@ -302,7 +316,20 @@ package com.Clientin.Clientin.repository;
 
         private Report createTestEntity() {
             Report entity = new Report();
-            entity.setUserid(testEntity.getUserid());\n        entity.setReportname(testEntity.getReportname());\n        entity.setReporttype(testEntity.getReporttype());\n        entity.setStatus(testEntity.getStatus());\n        entity.setParameters(testEntity.getParameters());\n        entity.setFilepath(testEntity.getFilepath());\n        entity.setFilesize(testEntity.getFilesize());\n        entity.setFormat(testEntity.getFormat());\n        entity.setScheduledfor(testEntity.getScheduledfor());\n        entity.setGeneratedat(testEntity.getGeneratedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setReportname(testEntity.getReportname());
+        entity.setReporttype(testEntity.getReporttype());
+        entity.setStatus(testEntity.getStatus());
+        entity.setParameters(testEntity.getParameters());
+        entity.setFilepath(testEntity.getFilepath());
+        entity.setFilesize(testEntity.getFilesize());
+        entity.setFormat(testEntity.getFormat());
+        entity.setScheduledfor(testEntity.getScheduledfor());
+        entity.setGeneratedat(testEntity.getGeneratedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }

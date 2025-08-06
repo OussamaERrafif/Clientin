@@ -3,6 +3,7 @@ package com.Clientin.Clientin.repository;
 import com.Clientin.Clientin.entity.PerformanceReview;
 import com.Clientin.Clientin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 
 @Repository
 public interface PerformanceReviewRepository 
-    extends JpaRepository<PerformanceReview, String> {
+    extends JpaRepository<PerformanceReview, String>, JpaSpecificationExecutor<PerformanceReview> {
 
     // Automatic query methods
     List<PerformanceReview> findByEmployeeId(String employeeId);

@@ -10,12 +10,10 @@ package com.Clientin.Clientin.controller;
     import org.springframework.data.domain.*;
     import org.springframework.hateoas.*;
     import org.springframework.http.*;
-    import org.springframework.security.test.context.support.WithMockUser;
-    import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.MockMvc;
     import java.util.*;
     import static org.mockito.BDDMockito.*;
-    import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
     import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
     @WebMvcTest(EmailTemplateController.class)
@@ -33,7 +31,6 @@ package com.Clientin.Clientin.controller;
         private final String BASE_URL = "/api/v1/emailTemplates";
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_READ")
         void getById_ShouldReturnResourceWithLinks() throws Exception {
             given(emailTemplateService.findById(TEST_ID)).willReturn(Optional.of(validDto));
 
@@ -45,12 +42,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_WRITE")
         void create_ShouldReturnCreatedWithLocation() throws Exception {
             given(emailTemplateService.create(any())).willReturn(validDto);
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isCreated())
@@ -67,12 +63,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_WRITE")
         void create_ShouldValidateInput() throws Exception {
             EmailTemplateDTO invalidDto = new EmailTemplateDTO();
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(invalidDto)))
                 .andExpect(status().isBadRequest())
@@ -81,7 +76,6 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_READ")
         void getAll_ShouldReturnPagedResources() throws Exception {
             Page<EmailTemplateDTO> page = new PageImpl<>(List.of(validDto));
             given(emailTemplateService.findAll(any())).willReturn(page);
@@ -96,28 +90,24 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_DELETE")
         void delete_ShouldReturnNoContent() throws Exception {
             given(emailTemplateService.exists(TEST_ID)).willReturn(true);
 
             mockMvc.perform(delete(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf()))
+                    )
                 .andExpect(status().isNoContent());
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_EMAILTEMPLATE_UPDATE")
         void partialUpdate_ShouldHandleInvalidData() throws Exception {
             given(emailTemplateService.partialUpdate(eq(TEST_ID), any()))
                 .willThrow(new IllegalArgumentException("Invalid data"));
 
             mockMvc.perform(patch(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf())
+                    
                     .content("{}"))
                 .andExpect(status().isBadRequest());
         }
-
-        
 
         private EmailTemplateDTO createValidDto() {
             return EmailTemplateDTO.builder()

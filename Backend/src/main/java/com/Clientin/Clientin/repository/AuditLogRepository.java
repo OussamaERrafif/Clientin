@@ -3,6 +3,7 @@ package com.Clientin.Clientin.repository;
 import com.Clientin.Clientin.entity.AuditLog;
 import com.Clientin.Clientin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface AuditLogRepository 
-    extends JpaRepository<AuditLog, String> {
+    extends JpaRepository<AuditLog, String>, JpaSpecificationExecutor<AuditLog> {
 
     // Automatic query methods
     List<AuditLog> findByUserId(String userId);

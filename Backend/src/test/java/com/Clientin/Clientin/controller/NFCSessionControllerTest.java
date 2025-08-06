@@ -10,12 +10,10 @@ package com.Clientin.Clientin.controller;
     import org.springframework.data.domain.*;
     import org.springframework.hateoas.*;
     import org.springframework.http.*;
-    import org.springframework.security.test.context.support.WithMockUser;
-    import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.MockMvc;
     import java.util.*;
     import static org.mockito.BDDMockito.*;
-    import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
     import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
     @WebMvcTest(NFCSessionController.class)
@@ -33,7 +31,6 @@ package com.Clientin.Clientin.controller;
         private final String BASE_URL = "/api/v1/nFCSessions";
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getById_ShouldReturnResourceWithLinks() throws Exception {
             given(nFCSessionService.findById(TEST_ID)).willReturn(Optional.of(validDto));
 
@@ -45,12 +42,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_WRITE")
         void create_ShouldReturnCreatedWithLocation() throws Exception {
             given(nFCSessionService.create(any())).willReturn(validDto);
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isCreated())
@@ -67,12 +63,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_WRITE")
         void create_ShouldValidateInput() throws Exception {
             NFCSessionDTO invalidDto = new NFCSessionDTO();
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(invalidDto)))
                 .andExpect(status().isBadRequest())
@@ -81,7 +76,6 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getAll_ShouldReturnPagedResources() throws Exception {
             Page<NFCSessionDTO> page = new PageImpl<>(List.of(validDto));
             given(nFCSessionService.findAll(any())).willReturn(page);
@@ -96,30 +90,26 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_DELETE")
         void delete_ShouldReturnNoContent() throws Exception {
             given(nFCSessionService.exists(TEST_ID)).willReturn(true);
 
             mockMvc.perform(delete(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf()))
+                    )
                 .andExpect(status().isNoContent());
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_UPDATE")
         void partialUpdate_ShouldHandleInvalidData() throws Exception {
             given(nFCSessionService.partialUpdate(eq(TEST_ID), any()))
                 .willThrow(new IllegalArgumentException("Invalid data"));
 
             mockMvc.perform(patch(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf())
+                    
                     .content("{}"))
                 .andExpect(status().isBadRequest());
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getNFCDevice_ShouldReturnRelatedResources() throws Exception {
             List<NFCDeviceDTO> items = List.of(new NFCDeviceDTO());
             given(nFCSessionService.getDevice(TEST_ID))
@@ -131,7 +121,6 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getClient_ShouldReturnRelatedResources() throws Exception {
             List<ClientDTO> items = List.of(new ClientDTO());
             given(nFCSessionService.getClient(TEST_ID))

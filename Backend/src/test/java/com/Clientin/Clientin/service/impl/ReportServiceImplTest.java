@@ -36,7 +36,34 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new Report();
             dto = new ReportDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setReportName("Test Reportname");\n        dto.setReportName(entity.getReportName());\n        entity.setReportType(createTestReportType());\n        dto.setReportType(entity.getReportType());\n        entity.setStatus(createTestReportStatus());\n        dto.setStatus(entity.getStatus());\n        entity.setParameters("Test Parameters");\n        dto.setParameters(entity.getParameters());\n        entity.setFilePath("Test Filepath");\n        dto.setFilePath(entity.getFilePath());\n        entity.setFileSize(createTestLong());\n        dto.setFileSize(entity.getFileSize());\n        entity.setFormat(createTestReportFormat());\n        dto.setFormat(entity.getFormat());\n        entity.setScheduledFor(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setScheduledFor(entity.getScheduledFor());\n        entity.setGeneratedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setGeneratedAt(entity.getGeneratedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setReportName("Test Reportname");
+        dto.setReportName(entity.getReportName());
+        entity.setReportType(createTestReportType());
+        dto.setReportType(entity.getReportType());
+        entity.setStatus(createTestReportStatus());
+        dto.setStatus(entity.getStatus());
+        entity.setParameters("Test Parameters");
+        dto.setParameters(entity.getParameters());
+        entity.setFilePath("Test Filepath");
+        dto.setFilePath(entity.getFilePath());
+        entity.setFileSize(createTestLong());
+        dto.setFileSize(entity.getFileSize());
+        entity.setFormat(createTestReportFormat());
+        dto.setFormat(entity.getFormat());
+        entity.setScheduledFor(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setScheduledFor(entity.getScheduledFor());
+        entity.setGeneratedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setGeneratedAt(entity.getGeneratedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +77,20 @@ package com.Clientin.Clientin.service.impl;
             ReportDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getReportName()).isEqualTo(dto.getReportName());\n        assertThat(result.getReportType()).isEqualTo(dto.getReportType());\n        assertThat(result.getStatus()).isEqualTo(dto.getStatus());\n        assertThat(result.getParameters()).isEqualTo(dto.getParameters());\n        assertThat(result.getFilePath()).isEqualTo(dto.getFilePath());\n        assertThat(result.getFileSize()).isEqualTo(dto.getFileSize());\n        assertThat(result.getFormat()).isEqualTo(dto.getFormat());\n        assertThat(result.getScheduledFor()).isEqualTo(dto.getScheduledFor());\n        assertThat(result.getGeneratedAt()).isEqualTo(dto.getGeneratedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getReportName()).isEqualTo(dto.getReportName());
+        assertThat(result.getReportType()).isEqualTo(dto.getReportType());
+        assertThat(result.getStatus()).isEqualTo(dto.getStatus());
+        assertThat(result.getParameters()).isEqualTo(dto.getParameters());
+        assertThat(result.getFilePath()).isEqualTo(dto.getFilePath());
+        assertThat(result.getFileSize()).isEqualTo(dto.getFileSize());
+        assertThat(result.getFormat()).isEqualTo(dto.getFormat());
+        assertThat(result.getScheduledFor()).isEqualTo(dto.getScheduledFor());
+        assertThat(result.getGeneratedAt()).isEqualTo(dto.getGeneratedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(reportRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

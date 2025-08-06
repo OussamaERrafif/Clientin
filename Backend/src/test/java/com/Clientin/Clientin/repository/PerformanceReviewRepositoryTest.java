@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -37,9 +37,29 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new PerformanceReview();
-            testEntity.setEmployeeId("TEST_EMPLOYEEID");\n        testEntity.setReviewerId("TEST_REVIEWERID");\n        testEntity.setReviewPeriodStart(LocalDate.of(2024, 1, 1));\n        testEntity.setReviewPeriodEnd(LocalDate.of(2024, 1, 1));\n        testEntity.setOverallScore(new BigDecimal("1234.56"));\n        testEntity.setTechnicalSkillsScore(new BigDecimal("1234.56"));\n        testEntity.setCommunicationScore(new BigDecimal("1234.56"));\n        testEntity.setTeamworkScore(new BigDecimal("1234.56"));\n        testEntity.setLeadershipScore(new BigDecimal("1234.56"));\n        testEntity.setStrengths("TEST_STRENGTHS");\n        testEntity.setAreasForImprovement("TEST_AREASFORIMPROVEMENT");\n        testEntity.setGoals("TEST_GOALS");\n        testEntity.setReviewerComments("TEST_REVIEWERCOMMENTS");\n        testEntity.setEmployeeComments("TEST_EMPLOYEECOMMENTS");\n        // TODO: Handle ReviewStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setCompletedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User employee = UserTestUtils.createTestUser();
+            testEntity.setEmployeeId("TEST_EMPLOYEEID");
+        testEntity.setReviewerId("TEST_REVIEWERID");
+        testEntity.setReviewPeriodStart(LocalDate.of(2024, 1, 1));
+        testEntity.setReviewPeriodEnd(LocalDate.of(2024, 1, 1));
+        testEntity.setOverallScore(new BigDecimal("1234.56"));
+        testEntity.setTechnicalSkillsScore(new BigDecimal("1234.56"));
+        testEntity.setCommunicationScore(new BigDecimal("1234.56"));
+        testEntity.setTeamworkScore(new BigDecimal("1234.56"));
+        testEntity.setLeadershipScore(new BigDecimal("1234.56"));
+        testEntity.setStrengths("TEST_STRENGTHS");
+        testEntity.setAreasForImprovement("TEST_AREASFORIMPROVEMENT");
+        testEntity.setGoals("TEST_GOALS");
+        testEntity.setReviewerComments("TEST_REVIEWERCOMMENTS");
+        testEntity.setEmployeeComments("TEST_EMPLOYEECOMMENTS");
+        // TODO: Handle ReviewStatus type for status
+        // testEntity.setStatus(/* unknown type */);
+        testEntity.setCompletedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        User employee = UserTestUtils.createTestUser();
         em.persist(employee);
-        testEntity.setEmployee(employee);\n        User reviewer = UserTestUtils.createTestUser();
+        testEntity.setEmployee(employee);
+        User reviewer = UserTestUtils.createTestUser();
         em.persist(reviewer);
         testEntity.setReviewer(reviewer);
             repository.saveAndFlush(testEntity);
@@ -48,7 +68,8 @@ package com.Clientin.Clientin.repository;
 
         @AfterEach
         void tearDown() {
-            UserTestUtils.cleanupUser(em);\n        UserTestUtils.cleanupUser(em);
+            UserTestUtils.cleanupUser(em);
+        UserTestUtils.cleanupUser(em);
         }
 
         @Test
@@ -369,9 +390,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_PERFORMANCEREVIEW_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(performanceReviewService.getEmployee(TEST_ID))
@@ -383,8 +402,7 @@ package com.Clientin.Clientin.repository;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_PERFORMANCEREVIEW_READ")
-        void getUser_ShouldReturnRelatedResources() throws Exception {
+        void getReviewer_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(performanceReviewService.getReviewer(TEST_ID))
                 .willReturn(items);
@@ -396,7 +414,26 @@ package com.Clientin.Clientin.repository;
 
         private PerformanceReview createTestEntity() {
             PerformanceReview entity = new PerformanceReview();
-            entity.setEmployeeid(testEntity.getEmployeeid());\n        entity.setReviewerid(testEntity.getReviewerid());\n        entity.setReviewperiodstart(testEntity.getReviewperiodstart());\n        entity.setReviewperiodend(testEntity.getReviewperiodend());\n        entity.setOverallscore(testEntity.getOverallscore());\n        entity.setTechnicalskillsscore(testEntity.getTechnicalskillsscore());\n        entity.setCommunicationscore(testEntity.getCommunicationscore());\n        entity.setTeamworkscore(testEntity.getTeamworkscore());\n        entity.setLeadershipscore(testEntity.getLeadershipscore());\n        entity.setStrengths(testEntity.getStrengths());\n        entity.setAreasforimprovement(testEntity.getAreasforimprovement());\n        entity.setGoals(testEntity.getGoals());\n        entity.setReviewercomments(testEntity.getReviewercomments());\n        entity.setEmployeecomments(testEntity.getEmployeecomments());\n        entity.setStatus(testEntity.getStatus());\n        entity.setCompletedat(testEntity.getCompletedat());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());\n        entity.setEmployee(testEntity.getEmployee());\n        entity.setReviewer(testEntity.getReviewer());
+            entity.setEmployeeid(testEntity.getEmployeeid());
+        entity.setReviewerid(testEntity.getReviewerid());
+        entity.setReviewperiodstart(testEntity.getReviewperiodstart());
+        entity.setReviewperiodend(testEntity.getReviewperiodend());
+        entity.setOverallscore(testEntity.getOverallscore());
+        entity.setTechnicalskillsscore(testEntity.getTechnicalskillsscore());
+        entity.setCommunicationscore(testEntity.getCommunicationscore());
+        entity.setTeamworkscore(testEntity.getTeamworkscore());
+        entity.setLeadershipscore(testEntity.getLeadershipscore());
+        entity.setStrengths(testEntity.getStrengths());
+        entity.setAreasforimprovement(testEntity.getAreasforimprovement());
+        entity.setGoals(testEntity.getGoals());
+        entity.setReviewercomments(testEntity.getReviewercomments());
+        entity.setEmployeecomments(testEntity.getEmployeecomments());
+        entity.setStatus(testEntity.getStatus());
+        entity.setCompletedat(testEntity.getCompletedat());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
+        entity.setEmployee(testEntity.getEmployee());
+        entity.setReviewer(testEntity.getReviewer());
             return entity;
         }
     }

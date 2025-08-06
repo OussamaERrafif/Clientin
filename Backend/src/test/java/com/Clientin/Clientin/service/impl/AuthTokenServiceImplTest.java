@@ -36,7 +36,24 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new AuthToken();
             dto = new AuthTokenDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setTokenHash("Test Tokenhash");\n        dto.setTokenHash(entity.getTokenHash());\n        entity.setTokenType(createTestTokenType());\n        dto.setTokenType(entity.getTokenType());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setRevoked(createTestBoolean());\n        dto.setRevoked(entity.getRevoked());\n        entity.setDeviceInfo("Test Deviceinfo");\n        dto.setDeviceInfo(entity.getDeviceInfo());\n        entity.setIpAddress("Test Ipaddress");\n        dto.setIpAddress(entity.getIpAddress());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setTokenHash("Test Tokenhash");
+        dto.setTokenHash(entity.getTokenHash());
+        entity.setTokenType(createTestTokenType());
+        dto.setTokenType(entity.getTokenType());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setRevoked(createTestBoolean());
+        dto.setRevoked(entity.getRevoked());
+        entity.setDeviceInfo("Test Deviceinfo");
+        dto.setDeviceInfo(entity.getDeviceInfo());
+        entity.setIpAddress("Test Ipaddress");
+        dto.setIpAddress(entity.getIpAddress());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +67,15 @@ package com.Clientin.Clientin.service.impl;
             AuthTokenDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getTokenHash()).isEqualTo(dto.getTokenHash());\n        assertThat(result.getTokenType()).isEqualTo(dto.getTokenType());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getRevoked()).isEqualTo(dto.getRevoked());\n        assertThat(result.getDeviceInfo()).isEqualTo(dto.getDeviceInfo());\n        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getTokenHash()).isEqualTo(dto.getTokenHash());
+        assertThat(result.getTokenType()).isEqualTo(dto.getTokenType());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getRevoked()).isEqualTo(dto.getRevoked());
+        assertThat(result.getDeviceInfo()).isEqualTo(dto.getDeviceInfo());
+        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(authTokenRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

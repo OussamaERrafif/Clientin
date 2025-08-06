@@ -3,6 +3,7 @@ package com.Clientin.Clientin.repository;
 import com.Clientin.Clientin.entity.Notification;
 import com.Clientin.Clientin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface NotificationRepository 
-    extends JpaRepository<Notification, String> {
+    extends JpaRepository<Notification, String>, JpaSpecificationExecutor<Notification> {
 
     // Automatic query methods
     List<Notification> findByUserId(String userId);

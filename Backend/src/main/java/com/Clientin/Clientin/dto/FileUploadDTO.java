@@ -32,5 +32,7 @@ public class FileUploadDTO implements Serializable {
     private Long downloadCount;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

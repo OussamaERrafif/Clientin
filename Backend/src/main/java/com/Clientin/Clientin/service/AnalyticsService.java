@@ -1,6 +1,7 @@
 package com.Clientin.Clientin.service;
 
 import com.Clientin.Clientin.dto.AnalyticsDTO;
+import com.Clientin.Clientin.entity.Analytics;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

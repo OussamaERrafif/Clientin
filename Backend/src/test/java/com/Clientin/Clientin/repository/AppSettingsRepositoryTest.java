@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -34,7 +34,18 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new AppSettings();
-            testEntity.setSettingKey("TEST_SETTINGKEY");\n        testEntity.setSettingValue("TEST_SETTINGVALUE");\n        // TODO: Handle SettingType type for settingType\n        // testEntity.setSettingType(/* unknown type */);\n        testEntity.setCategory("TEST_CATEGORY");\n        testEntity.setDescription("Test description for description field");\n        testEntity.setDefaultValue("TEST_DEFAULTVALUE");\n        testEntity.setValidationRules("TEST_VALIDATIONRULES");\n        testEntity.setIsPublic(true);\n        testEntity.setIsEncrypted(true);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+            testEntity.setSettingKey("TEST_SETTINGKEY");
+        testEntity.setSettingValue("TEST_SETTINGVALUE");
+        // TODO: Handle SettingType type for settingType
+        // testEntity.setSettingType(/* unknown type */);
+        testEntity.setCategory("TEST_CATEGORY");
+        testEntity.setDescription("Test description for description field");
+        testEntity.setDefaultValue("TEST_DEFAULTVALUE");
+        testEntity.setValidationRules("TEST_VALIDATIONRULES");
+        testEntity.setIsPublic(true);
+        testEntity.setIsEncrypted(true);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
             repository.saveAndFlush(testEntity);
             em.clear();
         }
@@ -245,11 +256,19 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
-
         private AppSettings createTestEntity() {
             AppSettings entity = new AppSettings();
-            entity.setSettingkey(testEntity.getSettingkey());\n        entity.setSettingvalue(testEntity.getSettingvalue());\n        entity.setSettingtype(testEntity.getSettingtype());\n        entity.setCategory(testEntity.getCategory());\n        entity.setDescription(testEntity.getDescription());\n        entity.setDefaultvalue(testEntity.getDefaultvalue());\n        entity.setValidationrules(testEntity.getValidationrules());\n        entity.setIspublic(testEntity.getIspublic());\n        entity.setIsencrypted(testEntity.getIsencrypted());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());
+            entity.setSettingkey(testEntity.getSettingkey());
+        entity.setSettingvalue(testEntity.getSettingvalue());
+        entity.setSettingtype(testEntity.getSettingtype());
+        entity.setCategory(testEntity.getCategory());
+        entity.setDescription(testEntity.getDescription());
+        entity.setDefaultvalue(testEntity.getDefaultvalue());
+        entity.setValidationrules(testEntity.getValidationrules());
+        entity.setIspublic(testEntity.getIspublic());
+        entity.setIsencrypted(testEntity.getIsencrypted());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
             return entity;
         }
     }

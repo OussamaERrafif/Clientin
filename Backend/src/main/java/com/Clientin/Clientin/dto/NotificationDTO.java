@@ -29,5 +29,7 @@ public class NotificationDTO implements Serializable {
     private String metadata;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

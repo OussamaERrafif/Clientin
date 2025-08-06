@@ -31,5 +31,7 @@ public class ReportDTO implements Serializable {
     private LocalDateTime expiresAt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

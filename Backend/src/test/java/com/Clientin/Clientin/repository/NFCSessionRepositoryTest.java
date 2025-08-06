@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -37,9 +37,19 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new NFCSession();
-            testEntity.setDeviceId("TEST_DEVICEID");\n        testEntity.setSessionToken("TEST_SESSIONTOKEN");\n        testEntity.setClientId("TEST_CLIENTID");\n        // TODO: Handle SessionStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setCompletedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setMetadata("TEST_METADATA");\n        NFCDevice device = NFCDeviceTestUtils.createTestNFCDevice();
+            testEntity.setDeviceId("TEST_DEVICEID");
+        testEntity.setSessionToken("TEST_SESSIONTOKEN");
+        testEntity.setClientId("TEST_CLIENTID");
+        // TODO: Handle SessionStatus type for status
+        // testEntity.setStatus(/* unknown type */);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setCompletedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setMetadata("TEST_METADATA");
+        NFCDevice device = NFCDeviceTestUtils.createTestNFCDevice();
         em.persist(device);
-        testEntity.setDevice(device);\n        Client client = ClientTestUtils.createTestClient();
+        testEntity.setDevice(device);
+        Client client = ClientTestUtils.createTestClient();
         em.persist(client);
         testEntity.setClient(client);
             repository.saveAndFlush(testEntity);
@@ -48,7 +58,8 @@ package com.Clientin.Clientin.repository;
 
         @AfterEach
         void tearDown() {
-            NFCDeviceTestUtils.cleanupNFCDevice(em);\n        ClientTestUtils.cleanupClient(em);
+            NFCDeviceTestUtils.cleanupNFCDevice(em);
+        ClientTestUtils.cleanupClient(em);
         }
 
         @Test
@@ -239,9 +250,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getNFCDevice_ShouldReturnRelatedResources() throws Exception {
             List<NFCDeviceDTO> items = List.of(new NFCDeviceDTO());
             given(nFCSessionService.getDevice(TEST_ID))
@@ -253,7 +262,6 @@ package com.Clientin.Clientin.repository;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_NFCSESSION_READ")
         void getClient_ShouldReturnRelatedResources() throws Exception {
             List<ClientDTO> items = List.of(new ClientDTO());
             given(nFCSessionService.getClient(TEST_ID))
@@ -266,7 +274,16 @@ package com.Clientin.Clientin.repository;
 
         private NFCSession createTestEntity() {
             NFCSession entity = new NFCSession();
-            entity.setDeviceid(testEntity.getDeviceid());\n        entity.setSessiontoken(testEntity.getSessiontoken());\n        entity.setClientid(testEntity.getClientid());\n        entity.setStatus(testEntity.getStatus());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setCompletedat(testEntity.getCompletedat());\n        entity.setMetadata(testEntity.getMetadata());\n        entity.setDevice(testEntity.getDevice());\n        entity.setClient(testEntity.getClient());
+            entity.setDeviceid(testEntity.getDeviceid());
+        entity.setSessiontoken(testEntity.getSessiontoken());
+        entity.setClientid(testEntity.getClientid());
+        entity.setStatus(testEntity.getStatus());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setCompletedat(testEntity.getCompletedat());
+        entity.setMetadata(testEntity.getMetadata());
+        entity.setDevice(testEntity.getDevice());
+        entity.setClient(testEntity.getClient());
             return entity;
         }
     }

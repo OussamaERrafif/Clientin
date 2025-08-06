@@ -36,7 +36,46 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new PerformanceReview();
             dto = new PerformanceReviewDTO();
-            entity.setEmployeeId("Test Employeeid");\n        dto.setEmployeeId(entity.getEmployeeId());\n        entity.setReviewerId("Test Reviewerid");\n        dto.setReviewerId(entity.getReviewerId());\n        entity.setReviewPeriodStart(createTestLocalDate());\n        dto.setReviewPeriodStart(entity.getReviewPeriodStart());\n        entity.setReviewPeriodEnd(createTestLocalDate());\n        dto.setReviewPeriodEnd(entity.getReviewPeriodEnd());\n        entity.setOverallScore(createTestBigDecimal());\n        dto.setOverallScore(entity.getOverallScore());\n        entity.setTechnicalSkillsScore(createTestBigDecimal());\n        dto.setTechnicalSkillsScore(entity.getTechnicalSkillsScore());\n        entity.setCommunicationScore(createTestBigDecimal());\n        dto.setCommunicationScore(entity.getCommunicationScore());\n        entity.setTeamworkScore(createTestBigDecimal());\n        dto.setTeamworkScore(entity.getTeamworkScore());\n        entity.setLeadershipScore(createTestBigDecimal());\n        dto.setLeadershipScore(entity.getLeadershipScore());\n        entity.setStrengths("Test Strengths");\n        dto.setStrengths(entity.getStrengths());\n        entity.setAreasForImprovement("Test Areasforimprovement");\n        dto.setAreasForImprovement(entity.getAreasForImprovement());\n        entity.setGoals("Test Goals");\n        dto.setGoals(entity.getGoals());\n        entity.setReviewerComments("Test Reviewercomments");\n        dto.setReviewerComments(entity.getReviewerComments());\n        entity.setEmployeeComments("Test Employeecomments");\n        dto.setEmployeeComments(entity.getEmployeeComments());\n        entity.setStatus(createTestReviewStatus());\n        dto.setStatus(entity.getStatus());\n        entity.setCompletedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCompletedAt(entity.getCompletedAt());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());\n        entity.setEmployee(createTestUser());\n        dto.setEmployee(entity.getEmployee());\n        entity.setReviewer(createTestUser());\n        dto.setReviewer(entity.getReviewer());
+            entity.setEmployeeId("Test Employeeid");
+        dto.setEmployeeId(entity.getEmployeeId());
+        entity.setReviewerId("Test Reviewerid");
+        dto.setReviewerId(entity.getReviewerId());
+        entity.setReviewPeriodStart(createTestLocalDate());
+        dto.setReviewPeriodStart(entity.getReviewPeriodStart());
+        entity.setReviewPeriodEnd(createTestLocalDate());
+        dto.setReviewPeriodEnd(entity.getReviewPeriodEnd());
+        entity.setOverallScore(createTestBigDecimal());
+        dto.setOverallScore(entity.getOverallScore());
+        entity.setTechnicalSkillsScore(createTestBigDecimal());
+        dto.setTechnicalSkillsScore(entity.getTechnicalSkillsScore());
+        entity.setCommunicationScore(createTestBigDecimal());
+        dto.setCommunicationScore(entity.getCommunicationScore());
+        entity.setTeamworkScore(createTestBigDecimal());
+        dto.setTeamworkScore(entity.getTeamworkScore());
+        entity.setLeadershipScore(createTestBigDecimal());
+        dto.setLeadershipScore(entity.getLeadershipScore());
+        entity.setStrengths("Test Strengths");
+        dto.setStrengths(entity.getStrengths());
+        entity.setAreasForImprovement("Test Areasforimprovement");
+        dto.setAreasForImprovement(entity.getAreasForImprovement());
+        entity.setGoals("Test Goals");
+        dto.setGoals(entity.getGoals());
+        entity.setReviewerComments("Test Reviewercomments");
+        dto.setReviewerComments(entity.getReviewerComments());
+        entity.setEmployeeComments("Test Employeecomments");
+        dto.setEmployeeComments(entity.getEmployeeComments());
+        entity.setStatus(createTestReviewStatus());
+        dto.setStatus(entity.getStatus());
+        entity.setCompletedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCompletedAt(entity.getCompletedAt());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
+        entity.setEmployee(createTestUser());
+        dto.setEmployee(entity.getEmployee());
+        entity.setReviewer(createTestUser());
+        dto.setReviewer(entity.getReviewer());
         }
 
         @Test
@@ -50,7 +89,26 @@ package com.Clientin.Clientin.service.impl;
             PerformanceReviewDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getEmployeeId()).isEqualTo(dto.getEmployeeId());\n        assertThat(result.getReviewerId()).isEqualTo(dto.getReviewerId());\n        assertThat(result.getReviewPeriodStart()).isEqualTo(dto.getReviewPeriodStart());\n        assertThat(result.getReviewPeriodEnd()).isEqualTo(dto.getReviewPeriodEnd());\n        assertThat(result.getOverallScore()).isEqualTo(dto.getOverallScore());\n        assertThat(result.getTechnicalSkillsScore()).isEqualTo(dto.getTechnicalSkillsScore());\n        assertThat(result.getCommunicationScore()).isEqualTo(dto.getCommunicationScore());\n        assertThat(result.getTeamworkScore()).isEqualTo(dto.getTeamworkScore());\n        assertThat(result.getLeadershipScore()).isEqualTo(dto.getLeadershipScore());\n        assertThat(result.getStrengths()).isEqualTo(dto.getStrengths());\n        assertThat(result.getAreasForImprovement()).isEqualTo(dto.getAreasForImprovement());\n        assertThat(result.getGoals()).isEqualTo(dto.getGoals());\n        assertThat(result.getReviewerComments()).isEqualTo(dto.getReviewerComments());\n        assertThat(result.getEmployeeComments()).isEqualTo(dto.getEmployeeComments());\n        assertThat(result.getStatus()).isEqualTo(dto.getStatus());\n        assertThat(result.getCompletedAt()).isEqualTo(dto.getCompletedAt());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());\n        assertThat(result.getEmployee()).isEqualTo(dto.getEmployee());\n        assertThat(result.getReviewer()).isEqualTo(dto.getReviewer());
+            assertThat(result.getEmployeeId()).isEqualTo(dto.getEmployeeId());
+        assertThat(result.getReviewerId()).isEqualTo(dto.getReviewerId());
+        assertThat(result.getReviewPeriodStart()).isEqualTo(dto.getReviewPeriodStart());
+        assertThat(result.getReviewPeriodEnd()).isEqualTo(dto.getReviewPeriodEnd());
+        assertThat(result.getOverallScore()).isEqualTo(dto.getOverallScore());
+        assertThat(result.getTechnicalSkillsScore()).isEqualTo(dto.getTechnicalSkillsScore());
+        assertThat(result.getCommunicationScore()).isEqualTo(dto.getCommunicationScore());
+        assertThat(result.getTeamworkScore()).isEqualTo(dto.getTeamworkScore());
+        assertThat(result.getLeadershipScore()).isEqualTo(dto.getLeadershipScore());
+        assertThat(result.getStrengths()).isEqualTo(dto.getStrengths());
+        assertThat(result.getAreasForImprovement()).isEqualTo(dto.getAreasForImprovement());
+        assertThat(result.getGoals()).isEqualTo(dto.getGoals());
+        assertThat(result.getReviewerComments()).isEqualTo(dto.getReviewerComments());
+        assertThat(result.getEmployeeComments()).isEqualTo(dto.getEmployeeComments());
+        assertThat(result.getStatus()).isEqualTo(dto.getStatus());
+        assertThat(result.getCompletedAt()).isEqualTo(dto.getCompletedAt());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+        assertThat(result.getEmployee()).isEqualTo(dto.getEmployee());
+        assertThat(result.getReviewer()).isEqualTo(dto.getReviewer());
             then(performanceReviewRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

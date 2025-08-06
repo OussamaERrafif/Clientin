@@ -26,5 +26,7 @@ public class AuthTokenDTO implements Serializable {
     private Boolean revoked;
     private String deviceInfo;
     private String ipAddress;
-    // Relationship handled via userId
+    
+    // Relationships
+    private User user;
 }

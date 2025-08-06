@@ -4,6 +4,7 @@ import com.Clientin.Clientin.entity.NFCSession;
 import com.Clientin.Clientin.entity.NFCDevice;
 import com.Clientin.Clientin.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface NFCSessionRepository 
-    extends JpaRepository<NFCSession, String> {
+    extends JpaRepository<NFCSession, String>, JpaSpecificationExecutor<NFCSession> {
 
     // Automatic query methods
     List<NFCSession> findByDeviceId(String deviceId);

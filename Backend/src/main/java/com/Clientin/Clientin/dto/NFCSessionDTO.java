@@ -27,6 +27,8 @@ public class NFCSessionDTO implements Serializable {
     private LocalDateTime expiresAt;
     private LocalDateTime completedAt;
     private String metadata;
-    // Relationship handled via deviceId
-    // Relationship handled via clientId
+    
+    // Relationships
+    private NFCDevice device;
+    private Client client;
 }

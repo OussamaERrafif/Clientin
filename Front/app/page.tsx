@@ -10,6 +10,7 @@ import { MoreHorizontal, Calendar, MessageSquare, User, MessageCircle, Star } fr
 import { DynamicFeedbackChart } from "@/components/dynamic-feedback-chart"
 import { GlobalSearch } from "@/components/global-search"
 import { EmployeeModal } from "@/components/employee-modal"
+import { ApiTest } from "@/components/api-test"
 
 const feedbackData = [
   {
@@ -174,6 +175,11 @@ export default function Dashboard() {
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
         </div>
+      </div>
+
+      {/* RTK Query Test */}
+      <div className="mb-6">
+        <ApiTest />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

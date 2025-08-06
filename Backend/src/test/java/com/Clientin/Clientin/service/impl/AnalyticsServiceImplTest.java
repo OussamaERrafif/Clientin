@@ -36,7 +36,26 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new Analytics();
             dto = new AnalyticsDTO();
-            entity.setMetricType(createTestMetricType());\n        dto.setMetricType(entity.getMetricType());\n        entity.setMetricKey("Test Metrickey");\n        dto.setMetricKey(entity.getMetricKey());\n        entity.setMetricValue(createTestBigDecimal());\n        dto.setMetricValue(entity.getMetricValue());\n        entity.setDateKey(createTestLocalDate());\n        dto.setDateKey(entity.getDateKey());\n        entity.setHourKey(42);\n        dto.setHourKey(entity.getHourKey());\n        entity.setEmployeeId("Test Employeeid");\n        dto.setEmployeeId(entity.getEmployeeId());\n        entity.setDepartment("Test Department");\n        dto.setDepartment(entity.getDepartment());\n        entity.setMetadata("Test Metadata");\n        dto.setMetadata(entity.getMetadata());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setEmployee(createTestUser());\n        dto.setEmployee(entity.getEmployee());
+            entity.setMetricType(createTestMetricType());
+        dto.setMetricType(entity.getMetricType());
+        entity.setMetricKey("Test Metrickey");
+        dto.setMetricKey(entity.getMetricKey());
+        entity.setMetricValue(createTestBigDecimal());
+        dto.setMetricValue(entity.getMetricValue());
+        entity.setDateKey(createTestLocalDate());
+        dto.setDateKey(entity.getDateKey());
+        entity.setHourKey(42);
+        dto.setHourKey(entity.getHourKey());
+        entity.setEmployeeId("Test Employeeid");
+        dto.setEmployeeId(entity.getEmployeeId());
+        entity.setDepartment("Test Department");
+        dto.setDepartment(entity.getDepartment());
+        entity.setMetadata("Test Metadata");
+        dto.setMetadata(entity.getMetadata());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setEmployee(createTestUser());
+        dto.setEmployee(entity.getEmployee());
         }
 
         @Test
@@ -50,7 +69,16 @@ package com.Clientin.Clientin.service.impl;
             AnalyticsDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getMetricType()).isEqualTo(dto.getMetricType());\n        assertThat(result.getMetricKey()).isEqualTo(dto.getMetricKey());\n        assertThat(result.getMetricValue()).isEqualTo(dto.getMetricValue());\n        assertThat(result.getDateKey()).isEqualTo(dto.getDateKey());\n        assertThat(result.getHourKey()).isEqualTo(dto.getHourKey());\n        assertThat(result.getEmployeeId()).isEqualTo(dto.getEmployeeId());\n        assertThat(result.getDepartment()).isEqualTo(dto.getDepartment());\n        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getEmployee()).isEqualTo(dto.getEmployee());
+            assertThat(result.getMetricType()).isEqualTo(dto.getMetricType());
+        assertThat(result.getMetricKey()).isEqualTo(dto.getMetricKey());
+        assertThat(result.getMetricValue()).isEqualTo(dto.getMetricValue());
+        assertThat(result.getDateKey()).isEqualTo(dto.getDateKey());
+        assertThat(result.getHourKey()).isEqualTo(dto.getHourKey());
+        assertThat(result.getEmployeeId()).isEqualTo(dto.getEmployeeId());
+        assertThat(result.getDepartment()).isEqualTo(dto.getDepartment());
+        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getEmployee()).isEqualTo(dto.getEmployee());
             then(analyticsRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

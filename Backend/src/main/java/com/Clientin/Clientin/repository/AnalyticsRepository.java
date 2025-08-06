@@ -3,6 +3,7 @@ package com.Clientin.Clientin.repository;
 import com.Clientin.Clientin.entity.Analytics;
 import com.Clientin.Clientin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 
 @Repository
 public interface AnalyticsRepository 
-    extends JpaRepository<Analytics, String> {
+    extends JpaRepository<Analytics, String>, JpaSpecificationExecutor<Analytics> {
 
     // Automatic query methods
     List<Analytics> findByMetricType(Analytics.MetricType metricType);

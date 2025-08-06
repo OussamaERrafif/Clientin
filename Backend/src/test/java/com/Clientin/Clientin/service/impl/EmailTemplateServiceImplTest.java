@@ -36,7 +36,26 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new EmailTemplate();
             dto = new EmailTemplateDTO();
-            entity.setTemplateName("Test Templatename");\n        dto.setTemplateName(entity.getTemplateName());\n        entity.setTemplateType(createTestTemplateType());\n        dto.setTemplateType(entity.getTemplateType());\n        entity.setSubject("Test Subject");\n        dto.setSubject(entity.getSubject());\n        entity.setHtmlContent("Test Htmlcontent");\n        dto.setHtmlContent(entity.getHtmlContent());\n        entity.setTextContent("Test Textcontent");\n        dto.setTextContent(entity.getTextContent());\n        entity.setVariables("Test Variables");\n        dto.setVariables(entity.getVariables());\n        entity.setActive(createTestBoolean());\n        dto.setActive(entity.getActive());\n        entity.setVersion(42);\n        dto.setVersion(entity.getVersion());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());
+            entity.setTemplateName("Test Templatename");
+        dto.setTemplateName(entity.getTemplateName());
+        entity.setTemplateType(createTestTemplateType());
+        dto.setTemplateType(entity.getTemplateType());
+        entity.setSubject("Test Subject");
+        dto.setSubject(entity.getSubject());
+        entity.setHtmlContent("Test Htmlcontent");
+        dto.setHtmlContent(entity.getHtmlContent());
+        entity.setTextContent("Test Textcontent");
+        dto.setTextContent(entity.getTextContent());
+        entity.setVariables("Test Variables");
+        dto.setVariables(entity.getVariables());
+        entity.setActive(createTestBoolean());
+        dto.setActive(entity.getActive());
+        entity.setVersion(42);
+        dto.setVersion(entity.getVersion());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
         }
 
         @Test
@@ -50,7 +69,16 @@ package com.Clientin.Clientin.service.impl;
             EmailTemplateDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getTemplateName()).isEqualTo(dto.getTemplateName());\n        assertThat(result.getTemplateType()).isEqualTo(dto.getTemplateType());\n        assertThat(result.getSubject()).isEqualTo(dto.getSubject());\n        assertThat(result.getHtmlContent()).isEqualTo(dto.getHtmlContent());\n        assertThat(result.getTextContent()).isEqualTo(dto.getTextContent());\n        assertThat(result.getVariables()).isEqualTo(dto.getVariables());\n        assertThat(result.getActive()).isEqualTo(dto.getActive());\n        assertThat(result.getVersion()).isEqualTo(dto.getVersion());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+            assertThat(result.getTemplateName()).isEqualTo(dto.getTemplateName());
+        assertThat(result.getTemplateType()).isEqualTo(dto.getTemplateType());
+        assertThat(result.getSubject()).isEqualTo(dto.getSubject());
+        assertThat(result.getHtmlContent()).isEqualTo(dto.getHtmlContent());
+        assertThat(result.getTextContent()).isEqualTo(dto.getTextContent());
+        assertThat(result.getVariables()).isEqualTo(dto.getVariables());
+        assertThat(result.getActive()).isEqualTo(dto.getActive());
+        assertThat(result.getVersion()).isEqualTo(dto.getVersion());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
             then(emailTemplateRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

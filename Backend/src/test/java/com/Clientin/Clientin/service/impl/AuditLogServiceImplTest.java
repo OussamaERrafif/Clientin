@@ -36,7 +36,30 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new AuditLog();
             dto = new AuditLogDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setEntityType("Test Entitytype");\n        dto.setEntityType(entity.getEntityType());\n        entity.setEntityId("Test Entityid");\n        dto.setEntityId(entity.getEntityId());\n        entity.setAction(createTestAction());\n        dto.setAction(entity.getAction());\n        entity.setOldValues("Test Oldvalues");\n        dto.setOldValues(entity.getOldValues());\n        entity.setNewValues("Test Newvalues");\n        dto.setNewValues(entity.getNewValues());\n        entity.setIpAddress("Test Ipaddress");\n        dto.setIpAddress(entity.getIpAddress());\n        entity.setUserAgent("Test Useragent");\n        dto.setUserAgent(entity.getUserAgent());\n        entity.setSessionId("Test Sessionid");\n        dto.setSessionId(entity.getSessionId());\n        entity.setRequestId("Test Requestid");\n        dto.setRequestId(entity.getRequestId());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setEntityType("Test Entitytype");
+        dto.setEntityType(entity.getEntityType());
+        entity.setEntityId("Test Entityid");
+        dto.setEntityId(entity.getEntityId());
+        entity.setAction(createTestAction());
+        dto.setAction(entity.getAction());
+        entity.setOldValues("Test Oldvalues");
+        dto.setOldValues(entity.getOldValues());
+        entity.setNewValues("Test Newvalues");
+        dto.setNewValues(entity.getNewValues());
+        entity.setIpAddress("Test Ipaddress");
+        dto.setIpAddress(entity.getIpAddress());
+        entity.setUserAgent("Test Useragent");
+        dto.setUserAgent(entity.getUserAgent());
+        entity.setSessionId("Test Sessionid");
+        dto.setSessionId(entity.getSessionId());
+        entity.setRequestId("Test Requestid");
+        dto.setRequestId(entity.getRequestId());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +73,18 @@ package com.Clientin.Clientin.service.impl;
             AuditLogDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getEntityType()).isEqualTo(dto.getEntityType());\n        assertThat(result.getEntityId()).isEqualTo(dto.getEntityId());\n        assertThat(result.getAction()).isEqualTo(dto.getAction());\n        assertThat(result.getOldValues()).isEqualTo(dto.getOldValues());\n        assertThat(result.getNewValues()).isEqualTo(dto.getNewValues());\n        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());\n        assertThat(result.getUserAgent()).isEqualTo(dto.getUserAgent());\n        assertThat(result.getSessionId()).isEqualTo(dto.getSessionId());\n        assertThat(result.getRequestId()).isEqualTo(dto.getRequestId());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getEntityType()).isEqualTo(dto.getEntityType());
+        assertThat(result.getEntityId()).isEqualTo(dto.getEntityId());
+        assertThat(result.getAction()).isEqualTo(dto.getAction());
+        assertThat(result.getOldValues()).isEqualTo(dto.getOldValues());
+        assertThat(result.getNewValues()).isEqualTo(dto.getNewValues());
+        assertThat(result.getIpAddress()).isEqualTo(dto.getIpAddress());
+        assertThat(result.getUserAgent()).isEqualTo(dto.getUserAgent());
+        assertThat(result.getSessionId()).isEqualTo(dto.getSessionId());
+        assertThat(result.getRequestId()).isEqualTo(dto.getRequestId());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(auditLogRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

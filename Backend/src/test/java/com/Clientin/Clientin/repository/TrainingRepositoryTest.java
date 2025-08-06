@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -34,7 +34,20 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new Training();
-            testEntity.setTitle("TEST_TITLE");\n        testEntity.setDescription("Test description for description field");\n        // TODO: Handle TrainingType type for trainingType\n        // testEntity.setTrainingType(/* unknown type */);\n        testEntity.setDurationHours(42);\n        testEntity.setContentUrl("TEST_CONTENTURL");\n        testEntity.setPrerequisites("TEST_PREREQUISITES");\n        testEntity.setLearningObjectives("TEST_LEARNINGOBJECTIVES");\n        // TODO: Handle TrainingStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setMaxParticipants(42);\n        testEntity.setPassingScore(42);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+            testEntity.setTitle("TEST_TITLE");
+        testEntity.setDescription("Test description for description field");
+        // TODO: Handle TrainingType type for trainingType
+        // testEntity.setTrainingType(/* unknown type */);
+        testEntity.setDurationHours(42);
+        testEntity.setContentUrl("TEST_CONTENTURL");
+        testEntity.setPrerequisites("TEST_PREREQUISITES");
+        testEntity.setLearningObjectives("TEST_LEARNINGOBJECTIVES");
+        // TODO: Handle TrainingStatus type for status
+        // testEntity.setStatus(/* unknown type */);
+        testEntity.setMaxParticipants(42);
+        testEntity.setPassingScore(42);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
             repository.saveAndFlush(testEntity);
             em.clear();
         }
@@ -258,11 +271,20 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
-
         private Training createTestEntity() {
             Training entity = new Training();
-            entity.setTitle(testEntity.getTitle());\n        entity.setDescription(testEntity.getDescription());\n        entity.setTrainingtype(testEntity.getTrainingtype());\n        entity.setDurationhours(testEntity.getDurationhours());\n        entity.setContenturl(testEntity.getContenturl());\n        entity.setPrerequisites(testEntity.getPrerequisites());\n        entity.setLearningobjectives(testEntity.getLearningobjectives());\n        entity.setStatus(testEntity.getStatus());\n        entity.setMaxparticipants(testEntity.getMaxparticipants());\n        entity.setPassingscore(testEntity.getPassingscore());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());
+            entity.setTitle(testEntity.getTitle());
+        entity.setDescription(testEntity.getDescription());
+        entity.setTrainingtype(testEntity.getTrainingtype());
+        entity.setDurationhours(testEntity.getDurationhours());
+        entity.setContenturl(testEntity.getContenturl());
+        entity.setPrerequisites(testEntity.getPrerequisites());
+        entity.setLearningobjectives(testEntity.getLearningobjectives());
+        entity.setStatus(testEntity.getStatus());
+        entity.setMaxparticipants(testEntity.getMaxparticipants());
+        entity.setPassingscore(testEntity.getPassingscore());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
             return entity;
         }
     }

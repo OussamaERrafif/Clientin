@@ -10,12 +10,10 @@ package com.Clientin.Clientin.controller;
     import org.springframework.data.domain.*;
     import org.springframework.hateoas.*;
     import org.springframework.http.*;
-    import org.springframework.security.test.context.support.WithMockUser;
-    import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.MockMvc;
     import java.util.*;
     import static org.mockito.BDDMockito.*;
-    import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
     import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
     @WebMvcTest(ReportController.class)
@@ -33,7 +31,6 @@ package com.Clientin.Clientin.controller;
         private final String BASE_URL = "/api/v1/reports";
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_READ")
         void getById_ShouldReturnResourceWithLinks() throws Exception {
             given(reportService.findById(TEST_ID)).willReturn(Optional.of(validDto));
 
@@ -45,12 +42,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_WRITE")
         void create_ShouldReturnCreatedWithLocation() throws Exception {
             given(reportService.create(any())).willReturn(validDto);
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isCreated())
@@ -67,12 +63,11 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_WRITE")
         void create_ShouldValidateInput() throws Exception {
             ReportDTO invalidDto = new ReportDTO();
 
             mockMvc.perform(post(BASE_URL)
-                    .with(csrf())
+                    
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(invalidDto)))
                 .andExpect(status().isBadRequest())
@@ -81,7 +76,6 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_READ")
         void getAll_ShouldReturnPagedResources() throws Exception {
             Page<ReportDTO> page = new PageImpl<>(List.of(validDto));
             given(reportService.findAll(any())).willReturn(page);
@@ -96,30 +90,26 @@ package com.Clientin.Clientin.controller;
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_DELETE")
         void delete_ShouldReturnNoContent() throws Exception {
             given(reportService.exists(TEST_ID)).willReturn(true);
 
             mockMvc.perform(delete(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf()))
+                    )
                 .andExpect(status().isNoContent());
         }
 
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_UPDATE")
         void partialUpdate_ShouldHandleInvalidData() throws Exception {
             given(reportService.partialUpdate(eq(TEST_ID), any()))
                 .willThrow(new IllegalArgumentException("Invalid data"));
 
             mockMvc.perform(patch(BASE_URL + "/{id}", TEST_ID)
-                    .with(csrf())
+                    
                     .content("{}"))
                 .andExpect(status().isBadRequest());
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_REPORT_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(reportService.getUser(TEST_ID))

@@ -36,7 +36,28 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new AppSettings();
             dto = new AppSettingsDTO();
-            entity.setSettingKey("Test Settingkey");\n        dto.setSettingKey(entity.getSettingKey());\n        entity.setSettingValue("Test Settingvalue");\n        dto.setSettingValue(entity.getSettingValue());\n        entity.setSettingType(createTestSettingType());\n        dto.setSettingType(entity.getSettingType());\n        entity.setCategory("Test Category");\n        dto.setCategory(entity.getCategory());\n        entity.setDescription("Test Description");\n        dto.setDescription(entity.getDescription());\n        entity.setDefaultValue("Test Defaultvalue");\n        dto.setDefaultValue(entity.getDefaultValue());\n        entity.setValidationRules("Test Validationrules");\n        dto.setValidationRules(entity.getValidationRules());\n        entity.setIsPublic(createTestBoolean());\n        dto.setIsPublic(entity.getIsPublic());\n        entity.setIsEncrypted(createTestBoolean());\n        dto.setIsEncrypted(entity.getIsEncrypted());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());
+            entity.setSettingKey("Test Settingkey");
+        dto.setSettingKey(entity.getSettingKey());
+        entity.setSettingValue("Test Settingvalue");
+        dto.setSettingValue(entity.getSettingValue());
+        entity.setSettingType(createTestSettingType());
+        dto.setSettingType(entity.getSettingType());
+        entity.setCategory("Test Category");
+        dto.setCategory(entity.getCategory());
+        entity.setDescription("Test Description");
+        dto.setDescription(entity.getDescription());
+        entity.setDefaultValue("Test Defaultvalue");
+        dto.setDefaultValue(entity.getDefaultValue());
+        entity.setValidationRules("Test Validationrules");
+        dto.setValidationRules(entity.getValidationRules());
+        entity.setIsPublic(createTestBoolean());
+        dto.setIsPublic(entity.getIsPublic());
+        entity.setIsEncrypted(createTestBoolean());
+        dto.setIsEncrypted(entity.getIsEncrypted());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
         }
 
         @Test
@@ -50,7 +71,17 @@ package com.Clientin.Clientin.service.impl;
             AppSettingsDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getSettingKey()).isEqualTo(dto.getSettingKey());\n        assertThat(result.getSettingValue()).isEqualTo(dto.getSettingValue());\n        assertThat(result.getSettingType()).isEqualTo(dto.getSettingType());\n        assertThat(result.getCategory()).isEqualTo(dto.getCategory());\n        assertThat(result.getDescription()).isEqualTo(dto.getDescription());\n        assertThat(result.getDefaultValue()).isEqualTo(dto.getDefaultValue());\n        assertThat(result.getValidationRules()).isEqualTo(dto.getValidationRules());\n        assertThat(result.getIsPublic()).isEqualTo(dto.getIsPublic());\n        assertThat(result.getIsEncrypted()).isEqualTo(dto.getIsEncrypted());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+            assertThat(result.getSettingKey()).isEqualTo(dto.getSettingKey());
+        assertThat(result.getSettingValue()).isEqualTo(dto.getSettingValue());
+        assertThat(result.getSettingType()).isEqualTo(dto.getSettingType());
+        assertThat(result.getCategory()).isEqualTo(dto.getCategory());
+        assertThat(result.getDescription()).isEqualTo(dto.getDescription());
+        assertThat(result.getDefaultValue()).isEqualTo(dto.getDefaultValue());
+        assertThat(result.getValidationRules()).isEqualTo(dto.getValidationRules());
+        assertThat(result.getIsPublic()).isEqualTo(dto.getIsPublic());
+        assertThat(result.getIsEncrypted()).isEqualTo(dto.getIsEncrypted());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
             then(appSettingsRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,20 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new Notification();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setTitle("TEST_TITLE");\n        testEntity.setMessage("TEST_MESSAGE");\n        // TODO: Handle NotificationType type for type\n        // testEntity.setType(/* unknown type */);\n        // TODO: Handle Priority type for priority\n        // testEntity.setPriority(/* unknown type */);\n        testEntity.setReadStatus(true);\n        testEntity.setReadAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setActionUrl("TEST_ACTIONURL");\n        testEntity.setMetadata("TEST_METADATA");\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setTitle("TEST_TITLE");
+        testEntity.setMessage("TEST_MESSAGE");
+        // TODO: Handle NotificationType type for type
+        // testEntity.setType(/* unknown type */);
+        // TODO: Handle Priority type for priority
+        // testEntity.setPriority(/* unknown type */);
+        testEntity.setReadStatus(true);
+        testEntity.setReadAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setActionUrl("TEST_ACTIONURL");
+        testEntity.setMetadata("TEST_METADATA");
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -261,9 +274,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_NOTIFICATION_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(notificationService.getUser(TEST_ID))
@@ -276,7 +287,18 @@ package com.Clientin.Clientin.repository;
 
         private Notification createTestEntity() {
             Notification entity = new Notification();
-            entity.setUserid(testEntity.getUserid());\n        entity.setTitle(testEntity.getTitle());\n        entity.setMessage(testEntity.getMessage());\n        entity.setType(testEntity.getType());\n        entity.setPriority(testEntity.getPriority());\n        entity.setReadstatus(testEntity.getReadstatus());\n        entity.setReadat(testEntity.getReadat());\n        entity.setActionurl(testEntity.getActionurl());\n        entity.setMetadata(testEntity.getMetadata());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setTitle(testEntity.getTitle());
+        entity.setMessage(testEntity.getMessage());
+        entity.setType(testEntity.getType());
+        entity.setPriority(testEntity.getPriority());
+        entity.setReadstatus(testEntity.getReadstatus());
+        entity.setReadat(testEntity.getReadat());
+        entity.setActionurl(testEntity.getActionurl());
+        entity.setMetadata(testEntity.getMetadata());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }

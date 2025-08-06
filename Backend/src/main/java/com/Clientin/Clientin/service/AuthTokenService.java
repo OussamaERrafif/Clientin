@@ -1,6 +1,7 @@
 package com.Clientin.Clientin.service;
 
 import com.Clientin.Clientin.dto.AuthTokenDTO;
+import com.Clientin.Clientin.entity.AuthToken;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

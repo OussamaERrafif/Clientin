@@ -2,8 +2,6 @@ package com.Clientin.Clientin.service;
 
 import com.Clientin.Clientin.dto.AuthTokenDTO;
 import com.Clientin.Clientin.dto.UserDTO;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Optional;
 
 /**
@@ -29,7 +27,7 @@ public interface AuthService {
     /**
      * Validate token and return user details
      */
-    Optional<UserDetails> validateToken(String token);
+    Optional<Object> validateToken(String token);
     
     /**
      * Register new user

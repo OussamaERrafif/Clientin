@@ -36,7 +36,30 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new Training();
             dto = new TrainingDTO();
-            entity.setTitle("Test Title");\n        dto.setTitle(entity.getTitle());\n        entity.setDescription("Test Description");\n        dto.setDescription(entity.getDescription());\n        entity.setTrainingType(createTestTrainingType());\n        dto.setTrainingType(entity.getTrainingType());\n        entity.setDurationHours(42);\n        dto.setDurationHours(entity.getDurationHours());\n        entity.setContentUrl("Test Contenturl");\n        dto.setContentUrl(entity.getContentUrl());\n        entity.setPrerequisites("Test Prerequisites");\n        dto.setPrerequisites(entity.getPrerequisites());\n        entity.setLearningObjectives("Test Learningobjectives");\n        dto.setLearningObjectives(entity.getLearningObjectives());\n        entity.setStatus(createTestTrainingStatus());\n        dto.setStatus(entity.getStatus());\n        entity.setMaxParticipants(42);\n        dto.setMaxParticipants(entity.getMaxParticipants());\n        entity.setPassingScore(42);\n        dto.setPassingScore(entity.getPassingScore());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setUpdatedAt(entity.getUpdatedAt());
+            entity.setTitle("Test Title");
+        dto.setTitle(entity.getTitle());
+        entity.setDescription("Test Description");
+        dto.setDescription(entity.getDescription());
+        entity.setTrainingType(createTestTrainingType());
+        dto.setTrainingType(entity.getTrainingType());
+        entity.setDurationHours(42);
+        dto.setDurationHours(entity.getDurationHours());
+        entity.setContentUrl("Test Contenturl");
+        dto.setContentUrl(entity.getContentUrl());
+        entity.setPrerequisites("Test Prerequisites");
+        dto.setPrerequisites(entity.getPrerequisites());
+        entity.setLearningObjectives("Test Learningobjectives");
+        dto.setLearningObjectives(entity.getLearningObjectives());
+        entity.setStatus(createTestTrainingStatus());
+        dto.setStatus(entity.getStatus());
+        entity.setMaxParticipants(42);
+        dto.setMaxParticipants(entity.getMaxParticipants());
+        entity.setPassingScore(42);
+        dto.setPassingScore(entity.getPassingScore());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setUpdatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setUpdatedAt(entity.getUpdatedAt());
         }
 
         @Test
@@ -50,7 +73,18 @@ package com.Clientin.Clientin.service.impl;
             TrainingDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getTitle()).isEqualTo(dto.getTitle());\n        assertThat(result.getDescription()).isEqualTo(dto.getDescription());\n        assertThat(result.getTrainingType()).isEqualTo(dto.getTrainingType());\n        assertThat(result.getDurationHours()).isEqualTo(dto.getDurationHours());\n        assertThat(result.getContentUrl()).isEqualTo(dto.getContentUrl());\n        assertThat(result.getPrerequisites()).isEqualTo(dto.getPrerequisites());\n        assertThat(result.getLearningObjectives()).isEqualTo(dto.getLearningObjectives());\n        assertThat(result.getStatus()).isEqualTo(dto.getStatus());\n        assertThat(result.getMaxParticipants()).isEqualTo(dto.getMaxParticipants());\n        assertThat(result.getPassingScore()).isEqualTo(dto.getPassingScore());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
+            assertThat(result.getTitle()).isEqualTo(dto.getTitle());
+        assertThat(result.getDescription()).isEqualTo(dto.getDescription());
+        assertThat(result.getTrainingType()).isEqualTo(dto.getTrainingType());
+        assertThat(result.getDurationHours()).isEqualTo(dto.getDurationHours());
+        assertThat(result.getContentUrl()).isEqualTo(dto.getContentUrl());
+        assertThat(result.getPrerequisites()).isEqualTo(dto.getPrerequisites());
+        assertThat(result.getLearningObjectives()).isEqualTo(dto.getLearningObjectives());
+        assertThat(result.getStatus()).isEqualTo(dto.getStatus());
+        assertThat(result.getMaxParticipants()).isEqualTo(dto.getMaxParticipants());
+        assertThat(result.getPassingScore()).isEqualTo(dto.getPassingScore());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getUpdatedAt()).isEqualTo(dto.getUpdatedAt());
             then(trainingRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

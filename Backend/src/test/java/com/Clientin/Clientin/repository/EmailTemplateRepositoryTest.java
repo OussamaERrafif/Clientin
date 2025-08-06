@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -34,7 +34,17 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new EmailTemplate();
-            testEntity.setTemplateName("Sample Templatename");\n        // TODO: Handle TemplateType type for templateType\n        // testEntity.setTemplateType(/* unknown type */);\n        testEntity.setSubject("TEST_SUBJECT");\n        testEntity.setHtmlContent("TEST_HTMLCONTENT");\n        testEntity.setTextContent("TEST_TEXTCONTENT");\n        testEntity.setVariables("TEST_VARIABLES");\n        testEntity.setActive(true);\n        testEntity.setVersion(42);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+            testEntity.setTemplateName("Sample Templatename");
+        // TODO: Handle TemplateType type for templateType
+        // testEntity.setTemplateType(/* unknown type */);
+        testEntity.setSubject("TEST_SUBJECT");
+        testEntity.setHtmlContent("TEST_HTMLCONTENT");
+        testEntity.setTextContent("TEST_TEXTCONTENT");
+        testEntity.setVariables("TEST_VARIABLES");
+        testEntity.setActive(true);
+        testEntity.setVersion(42);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
             repository.saveAndFlush(testEntity);
             em.clear();
         }
@@ -232,11 +242,18 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
-
         private EmailTemplate createTestEntity() {
             EmailTemplate entity = new EmailTemplate();
-            entity.setTemplatename(testEntity.getTemplatename());\n        entity.setTemplatetype(testEntity.getTemplatetype());\n        entity.setSubject(testEntity.getSubject());\n        entity.setHtmlcontent(testEntity.getHtmlcontent());\n        entity.setTextcontent(testEntity.getTextcontent());\n        entity.setVariables(testEntity.getVariables());\n        entity.setActive(testEntity.getActive());\n        entity.setVersion(testEntity.getVersion());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());
+            entity.setTemplatename(testEntity.getTemplatename());
+        entity.setTemplatetype(testEntity.getTemplatetype());
+        entity.setSubject(testEntity.getSubject());
+        entity.setHtmlcontent(testEntity.getHtmlcontent());
+        entity.setTextcontent(testEntity.getTextcontent());
+        entity.setVariables(testEntity.getVariables());
+        entity.setActive(testEntity.getActive());
+        entity.setVersion(testEntity.getVersion());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
             return entity;
         }
     }

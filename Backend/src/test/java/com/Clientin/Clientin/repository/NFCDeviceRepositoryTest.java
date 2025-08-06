@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -34,7 +34,17 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new NFCDevice();
-            testEntity.setDeviceName("Sample Devicename");\n        testEntity.setDeviceSerial("TEST_DEVICESERIAL");\n        testEntity.setLocation("TEST_LOCATION");\n        // TODO: Handle DeviceStatus type for status\n        // testEntity.setStatus(/* unknown type */);\n        testEntity.setFirmwareVersion("TEST_FIRMWAREVERSION");\n        testEntity.setBatteryLevel(42);\n        testEntity.setLastPing(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setConfiguration("TEST_CONFIGURATION");\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+            testEntity.setDeviceName("Sample Devicename");
+        testEntity.setDeviceSerial("TEST_DEVICESERIAL");
+        testEntity.setLocation("TEST_LOCATION");
+        // TODO: Handle DeviceStatus type for status
+        // testEntity.setStatus(/* unknown type */);
+        testEntity.setFirmwareVersion("TEST_FIRMWAREVERSION");
+        testEntity.setBatteryLevel(42);
+        testEntity.setLastPing(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setConfiguration("TEST_CONFIGURATION");
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setUpdatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
             repository.saveAndFlush(testEntity);
             em.clear();
         }
@@ -232,11 +242,18 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
-
         private NFCDevice createTestEntity() {
             NFCDevice entity = new NFCDevice();
-            entity.setDevicename(testEntity.getDevicename());\n        entity.setDeviceserial(testEntity.getDeviceserial());\n        entity.setLocation(testEntity.getLocation());\n        entity.setStatus(testEntity.getStatus());\n        entity.setFirmwareversion(testEntity.getFirmwareversion());\n        entity.setBatterylevel(testEntity.getBatterylevel());\n        entity.setLastping(testEntity.getLastping());\n        entity.setConfiguration(testEntity.getConfiguration());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUpdatedat(testEntity.getUpdatedat());
+            entity.setDevicename(testEntity.getDevicename());
+        entity.setDeviceserial(testEntity.getDeviceserial());
+        entity.setLocation(testEntity.getLocation());
+        entity.setStatus(testEntity.getStatus());
+        entity.setFirmwareversion(testEntity.getFirmwareversion());
+        entity.setBatterylevel(testEntity.getBatterylevel());
+        entity.setLastping(testEntity.getLastping());
+        entity.setConfiguration(testEntity.getConfiguration());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUpdatedat(testEntity.getUpdatedat());
             return entity;
         }
     }

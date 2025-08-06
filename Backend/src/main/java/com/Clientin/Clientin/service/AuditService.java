@@ -5,6 +5,7 @@ import com.Clientin.Clientin.entity.AuditLog;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service for audit logging and compliance tracking

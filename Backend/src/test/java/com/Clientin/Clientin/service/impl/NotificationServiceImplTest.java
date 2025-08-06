@@ -36,7 +36,30 @@ package com.Clientin.Clientin.service.impl;
         void setUp() {
             entity = new Notification();
             dto = new NotificationDTO();
-            entity.setUserId("Test Userid");\n        dto.setUserId(entity.getUserId());\n        entity.setTitle("Test Title");\n        dto.setTitle(entity.getTitle());\n        entity.setMessage("Test Message");\n        dto.setMessage(entity.getMessage());\n        entity.setType(createTestNotificationType());\n        dto.setType(entity.getType());\n        entity.setPriority(createTestPriority());\n        dto.setPriority(entity.getPriority());\n        entity.setReadStatus(createTestBoolean());\n        dto.setReadStatus(entity.getReadStatus());\n        entity.setReadAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setReadAt(entity.getReadAt());\n        entity.setActionUrl("Test Actionurl");\n        dto.setActionUrl(entity.getActionUrl());\n        entity.setMetadata("Test Metadata");\n        dto.setMetadata(entity.getMetadata());\n        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setCreatedAt(entity.getCreatedAt());\n        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));\n        dto.setExpiresAt(entity.getExpiresAt());\n        entity.setUser(createTestUser());\n        dto.setUser(entity.getUser());
+            entity.setUserId("Test Userid");
+        dto.setUserId(entity.getUserId());
+        entity.setTitle("Test Title");
+        dto.setTitle(entity.getTitle());
+        entity.setMessage("Test Message");
+        dto.setMessage(entity.getMessage());
+        entity.setType(createTestNotificationType());
+        dto.setType(entity.getType());
+        entity.setPriority(createTestPriority());
+        dto.setPriority(entity.getPriority());
+        entity.setReadStatus(createTestBoolean());
+        dto.setReadStatus(entity.getReadStatus());
+        entity.setReadAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setReadAt(entity.getReadAt());
+        entity.setActionUrl("Test Actionurl");
+        dto.setActionUrl(entity.getActionUrl());
+        entity.setMetadata("Test Metadata");
+        dto.setMetadata(entity.getMetadata());
+        entity.setCreatedAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setCreatedAt(entity.getCreatedAt());
+        entity.setExpiresAt(LocalDateTime.parse("2024-01-01T12:00:00"));
+        dto.setExpiresAt(entity.getExpiresAt());
+        entity.setUser(createTestUser());
+        dto.setUser(entity.getUser());
         }
 
         @Test
@@ -50,7 +73,18 @@ package com.Clientin.Clientin.service.impl;
             NotificationDTO result = service.create(dto);
 
             // Assert
-            assertThat(result.getUserId()).isEqualTo(dto.getUserId());\n        assertThat(result.getTitle()).isEqualTo(dto.getTitle());\n        assertThat(result.getMessage()).isEqualTo(dto.getMessage());\n        assertThat(result.getType()).isEqualTo(dto.getType());\n        assertThat(result.getPriority()).isEqualTo(dto.getPriority());\n        assertThat(result.getReadStatus()).isEqualTo(dto.getReadStatus());\n        assertThat(result.getReadAt()).isEqualTo(dto.getReadAt());\n        assertThat(result.getActionUrl()).isEqualTo(dto.getActionUrl());\n        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());\n        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());\n        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());\n        assertThat(result.getUser()).isEqualTo(dto.getUser());
+            assertThat(result.getUserId()).isEqualTo(dto.getUserId());
+        assertThat(result.getTitle()).isEqualTo(dto.getTitle());
+        assertThat(result.getMessage()).isEqualTo(dto.getMessage());
+        assertThat(result.getType()).isEqualTo(dto.getType());
+        assertThat(result.getPriority()).isEqualTo(dto.getPriority());
+        assertThat(result.getReadStatus()).isEqualTo(dto.getReadStatus());
+        assertThat(result.getReadAt()).isEqualTo(dto.getReadAt());
+        assertThat(result.getActionUrl()).isEqualTo(dto.getActionUrl());
+        assertThat(result.getMetadata()).isEqualTo(dto.getMetadata());
+        assertThat(result.getCreatedAt()).isEqualTo(dto.getCreatedAt());
+        assertThat(result.getExpiresAt()).isEqualTo(dto.getExpiresAt());
+        assertThat(result.getUser()).isEqualTo(dto.getUser());
             then(notificationRepository).should().save(entityCaptor.capture());
             assertThat(entityCaptor.getValue()).isEqualTo(entity);
         }

@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,16 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new AuthToken();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setTokenHash("TEST_TOKENHASH");\n        // TODO: Handle TokenType type for tokenType\n        // testEntity.setTokenType(/* unknown type */);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setRevoked(true);\n        testEntity.setDeviceInfo("TEST_DEVICEINFO");\n        testEntity.setIpAddress("TEST_IPADDRESS");\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setTokenHash("TEST_TOKENHASH");
+        // TODO: Handle TokenType type for tokenType
+        // testEntity.setTokenType(/* unknown type */);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setRevoked(true);
+        testEntity.setDeviceInfo("TEST_DEVICEINFO");
+        testEntity.setIpAddress("TEST_IPADDRESS");
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -222,9 +231,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_AUTHTOKEN_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(authTokenService.getUser(TEST_ID))
@@ -237,7 +244,15 @@ package com.Clientin.Clientin.repository;
 
         private AuthToken createTestEntity() {
             AuthToken entity = new AuthToken();
-            entity.setUserid(testEntity.getUserid());\n        entity.setTokenhash(testEntity.getTokenhash());\n        entity.setTokentype(testEntity.getTokentype());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setRevoked(testEntity.getRevoked());\n        entity.setDeviceinfo(testEntity.getDeviceinfo());\n        entity.setIpaddress(testEntity.getIpaddress());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setTokenhash(testEntity.getTokenhash());
+        entity.setTokentype(testEntity.getTokentype());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setRevoked(testEntity.getRevoked());
+        entity.setDeviceinfo(testEntity.getDeviceinfo());
+        entity.setIpaddress(testEntity.getIpaddress());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }

@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,22 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new FileUpload();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setOriginalFilename("Sample Originalfilename");\n        testEntity.setStoredFilename("Sample Storedfilename");\n        testEntity.setFilePath("TEST_FILEPATH");\n        testEntity.setContentType("TEST_CONTENTTYPE");\n        testEntity.setFileSize(42L);\n        // TODO: Handle FileType type for fileType\n        // testEntity.setFileType(/* unknown type */);\n        testEntity.setEntityType("TEST_ENTITYTYPE");\n        testEntity.setEntityId("TEST_ENTITYID");\n        testEntity.setFileHash("TEST_FILEHASH");\n        testEntity.setIsPublic(true);\n        testEntity.setDownloadCount(42L);\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setOriginalFilename("Sample Originalfilename");
+        testEntity.setStoredFilename("Sample Storedfilename");
+        testEntity.setFilePath("TEST_FILEPATH");
+        testEntity.setContentType("TEST_CONTENTTYPE");
+        testEntity.setFileSize(42L);
+        // TODO: Handle FileType type for fileType
+        // testEntity.setFileType(/* unknown type */);
+        testEntity.setEntityType("TEST_ENTITYTYPE");
+        testEntity.setEntityId("TEST_ENTITYID");
+        testEntity.setFileHash("TEST_FILEHASH");
+        testEntity.setIsPublic(true);
+        testEntity.setDownloadCount(42L);
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        testEntity.setExpiresAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -300,9 +315,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_FILEUPLOAD_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(fileUploadService.getUser(TEST_ID))
@@ -315,7 +328,21 @@ package com.Clientin.Clientin.repository;
 
         private FileUpload createTestEntity() {
             FileUpload entity = new FileUpload();
-            entity.setUserid(testEntity.getUserid());\n        entity.setOriginalfilename(testEntity.getOriginalfilename());\n        entity.setStoredfilename(testEntity.getStoredfilename());\n        entity.setFilepath(testEntity.getFilepath());\n        entity.setContenttype(testEntity.getContenttype());\n        entity.setFilesize(testEntity.getFilesize());\n        entity.setFiletype(testEntity.getFiletype());\n        entity.setEntitytype(testEntity.getEntitytype());\n        entity.setEntityid(testEntity.getEntityid());\n        entity.setFilehash(testEntity.getFilehash());\n        entity.setIspublic(testEntity.getIspublic());\n        entity.setDownloadcount(testEntity.getDownloadcount());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setExpiresat(testEntity.getExpiresat());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setOriginalfilename(testEntity.getOriginalfilename());
+        entity.setStoredfilename(testEntity.getStoredfilename());
+        entity.setFilepath(testEntity.getFilepath());
+        entity.setContenttype(testEntity.getContenttype());
+        entity.setFilesize(testEntity.getFilesize());
+        entity.setFiletype(testEntity.getFiletype());
+        entity.setEntitytype(testEntity.getEntitytype());
+        entity.setEntityid(testEntity.getEntityid());
+        entity.setFilehash(testEntity.getFilehash());
+        entity.setIspublic(testEntity.getIspublic());
+        entity.setDownloadcount(testEntity.getDownloadcount());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setExpiresat(testEntity.getExpiresat());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }

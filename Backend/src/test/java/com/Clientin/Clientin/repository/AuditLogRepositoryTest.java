@@ -7,7 +7,7 @@ package com.Clientin.Clientin.repository;
     import org.springframework.dao.DataIntegrityViolationException;
     import org.springframework.data.domain.*;
     import org.springframework.test.context.jdbc.Sql;
-    import javax.persistence.EntityManager;
+    import jakarta.persistence.EntityManager;
     import java.util.List;
     import java.util.Optional;
 
@@ -35,7 +35,19 @@ package com.Clientin.Clientin.repository;
         @BeforeEach
         void setUp() {
             testEntity = new AuditLog();
-            testEntity.setUserId("TEST_USERID");\n        testEntity.setEntityType("TEST_ENTITYTYPE");\n        testEntity.setEntityId("TEST_ENTITYID");\n        // TODO: Handle Action type for action\n        // testEntity.setAction(/* unknown type */);\n        testEntity.setOldValues("TEST_OLDVALUES");\n        testEntity.setNewValues("TEST_NEWVALUES");\n        testEntity.setIpAddress("TEST_IPADDRESS");\n        testEntity.setUserAgent("TEST_USERAGENT");\n        testEntity.setSessionId("TEST_SESSIONID");\n        testEntity.setRequestId("TEST_REQUESTID");\n        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));\n        User user = UserTestUtils.createTestUser();
+            testEntity.setUserId("TEST_USERID");
+        testEntity.setEntityType("TEST_ENTITYTYPE");
+        testEntity.setEntityId("TEST_ENTITYID");
+        // TODO: Handle Action type for action
+        // testEntity.setAction(/* unknown type */);
+        testEntity.setOldValues("TEST_OLDVALUES");
+        testEntity.setNewValues("TEST_NEWVALUES");
+        testEntity.setIpAddress("TEST_IPADDRESS");
+        testEntity.setUserAgent("TEST_USERAGENT");
+        testEntity.setSessionId("TEST_SESSIONID");
+        testEntity.setRequestId("TEST_REQUESTID");
+        testEntity.setCreatedAt(LocalDateTime.of(2024, 1, 1, 12, 0));
+        User user = UserTestUtils.createTestUser();
         em.persist(user);
         testEntity.setUser(user);
             repository.saveAndFlush(testEntity);
@@ -261,9 +273,7 @@ package com.Clientin.Clientin.repository;
             assertThat(results).isNotEmpty();
         }
 
-        
         @Test
-        @WithMockUser(authorities = "SCOPE_AUDITLOG_READ")
         void getUser_ShouldReturnRelatedResources() throws Exception {
             List<UserDTO> items = List.of(new UserDTO());
             given(auditLogService.getUser(TEST_ID))
@@ -276,7 +286,18 @@ package com.Clientin.Clientin.repository;
 
         private AuditLog createTestEntity() {
             AuditLog entity = new AuditLog();
-            entity.setUserid(testEntity.getUserid());\n        entity.setEntitytype(testEntity.getEntitytype());\n        entity.setEntityid(testEntity.getEntityid());\n        entity.setAction(testEntity.getAction());\n        entity.setOldvalues(testEntity.getOldvalues());\n        entity.setNewvalues(testEntity.getNewvalues());\n        entity.setIpaddress(testEntity.getIpaddress());\n        entity.setUseragent(testEntity.getUseragent());\n        entity.setSessionid(testEntity.getSessionid());\n        entity.setRequestid(testEntity.getRequestid());\n        entity.setCreatedat(testEntity.getCreatedat());\n        entity.setUser(testEntity.getUser());
+            entity.setUserid(testEntity.getUserid());
+        entity.setEntitytype(testEntity.getEntitytype());
+        entity.setEntityid(testEntity.getEntityid());
+        entity.setAction(testEntity.getAction());
+        entity.setOldvalues(testEntity.getOldvalues());
+        entity.setNewvalues(testEntity.getNewvalues());
+        entity.setIpaddress(testEntity.getIpaddress());
+        entity.setUseragent(testEntity.getUseragent());
+        entity.setSessionid(testEntity.getSessionid());
+        entity.setRequestid(testEntity.getRequestid());
+        entity.setCreatedat(testEntity.getCreatedat());
+        entity.setUser(testEntity.getUser());
             return entity;
         }
     }
